@@ -1,0 +1,7 @@
+D:\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.csproj.AssemblyReference.cache
+D:\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.GeneratedMSBuildEditorConfig.editorconfig
+D:\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.AssemblyInfoInputs.cache
+D:\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.AssemblyInfo.cs
+D:\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.csproj.CoreCompileInputs.cache
+D:\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.MvcApplicationPartsAssemblyInfo.cs
+D:\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.MvcApplicationPartsAssemblyInfo.cache
