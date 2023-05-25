@@ -22,8 +22,9 @@ namespace HueFestival.Models
         [Required]
         public double ToaDoY { get; set; }
 
+        public ICollection<ChiTiet_CTr> ChiTiet_CTrs { get; set; }
 
         //Thuộc tính tham chiếu đến bảng LoaiDiaDiem
-        public LoaiDiaDiem LoaiDiaDiem { get; set; }
+        public LoaiDiaDiem LoaiDiaDiems { get; set; }
     }
 }

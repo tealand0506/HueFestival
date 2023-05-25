@@ -11,9 +11,9 @@ namespace HueFestival.Models
         [Required]
         public TimeSpan Time { get; set; }
         [Required]
-        public DateOnly fDate { get; set; }
+        public DateTime fDate { get; set; }
         [Required]
-        public DateOnly tDate { get; set; }
+        public DateTime tDate { get; set; }
         [Required]
         public int IdDiaDiem { get; set; }
         [Required]
@@ -21,7 +21,7 @@ namespace HueFestival.Models
         [Required]
         public int? IdDoan { get; set; }
         public string? TenDoan { get; set; }
-        public int IdNhom { get; set; }
+        public int IdNhomCTr { get; set; }
         [Required]
         public string TenNhom { get; set; }
 

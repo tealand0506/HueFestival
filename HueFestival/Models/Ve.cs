@@ -20,9 +20,9 @@ namespace HueFestival.Models
         [Required]
         public DateTime NgayPhatHanh { get; set; }
 
-        public Loai_Ve loai_Ve { get; set; }
+        public Loai_Ve Loai_Ves { get; set; }
        
-         public ChiTiet_CTr ChiTiet_CTr { get; set; }    
+         public ChiTiet_CTr ChiTiet_CTrs { get; set; }    
         
     }
 }

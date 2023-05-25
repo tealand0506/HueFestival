@@ -1,10 +1,13 @@
-﻿namespace HueFestival.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HueFestival.Models
 {
     public class HinhAnh_CTr
     {
-        public int IdHinhAnh;
-        public int IdCtr;
-        public string Path;
+        [Key]
+        public int IdHinhAnh { get; set; }
+        public int IdCtr { get; set; }
+        public string Path { get; set; }
 
         public ChuongTrinh ChuongTrinhs { get; set; }
     }
