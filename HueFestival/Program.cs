@@ -18,7 +18,7 @@ namespace HueFestival
 
             builder.Services.AddDbContext<HueFestival_DbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DB")));
             //builder.Services.AddAuthentication(...)
-
+            builder.Services.AddAutoMapper(typeof(Program));
 
 
 

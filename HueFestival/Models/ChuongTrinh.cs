@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace HueFestival.Models
 {
+    [Table("ChuongTrinh")]
     public class ChuongTrinh
     {
         [Key]
@@ -20,7 +22,7 @@ namespace HueFestival.Models
         public int TypeInOff { get; set; }
         public int Arrange { get; set; }
 
-
+        public ICollection<ThongTin_Ve> ThongTin_Ve { get; set; }
 
         [JsonIgnore]
         public ICollection<ChiTiet_CTr> ChiTiet_CTrs { get; set; }

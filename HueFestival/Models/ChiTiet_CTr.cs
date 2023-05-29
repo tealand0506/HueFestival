@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HueFestival.Models
 {
+    [Table("ChiTiet_CTr")]
     public class ChiTiet_CTr
     {
         [Key]
@@ -37,6 +39,5 @@ namespace HueFestival.Models
         // Thuộc tính tham chiếu đến bảng Doan
         public DoanNT DoanNTs { get; set; }
 
-        public ICollection<Ve> Ves { get; set; }
     }
 }

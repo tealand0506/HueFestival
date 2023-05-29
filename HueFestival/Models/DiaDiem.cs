@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HueFestival.Models
 {
+    [Table("DiaDiem")]
     public class DiaDiem
     {
         [Key]
@@ -13,18 +15,17 @@ namespace HueFestival.Models
         [Required]
         public int IdLoaiDD { get; set; }
         [Required, MaxLength(100)]
-        public string TomTat { get; set; }
-        public string NoiDung { get; set; }
+        public string MoTa { get; set; }
         [Required]
         public string PathImage { get; set; }
-        [Required]
-        public double ToaDoX { get; set; }
-        [Required]
-        public double ToaDoY { get; set; }
+
+        public double? ToaDoX { get; set; }
+
+        public double? ToaDoY { get; set; }
 
         public ICollection<ChiTiet_CTr> ChiTiet_CTrs { get; set; }
 
         //Thuộc tính tham chiếu đến bảng LoaiDiaDiem
-        public LoaiDiaDiem LoaiDiaDiems { get; set; }
+        public Loai_DiaDiem LoaiDiaDiems { get; set; }
     }
 }

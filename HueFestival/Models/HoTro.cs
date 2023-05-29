@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HueFestival.Models
 {
+    [Table("HoTro")]
     public class HoTro
     {
         [Key]

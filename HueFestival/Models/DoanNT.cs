@@ -1,25 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace HueFestival.Models
 {
+    [Table("DoanNT")]
     public class DoanNT
     {
         [Key]
         public int IdDoan { get; set; }
         [Required, MaxLength(50)]
-        public string TuaDe { get; set; }
-        [Required, MaxLength(100)]
-        public string TomTat { get; set;}
-        [Required]
-        public string NoiDung { get; set; }
-        [Required]
-        public string TacGia { get; set; }
-        [Required]
-        public string PathImage { get; set; }
-        public DateTime NgayCapNhat { get; set;}
-
-        
+        public string TenDoan { get; set; }
         
         public ICollection<ChiTiet_CTr> ChiTiet_Ctrs { get; set; }
     }

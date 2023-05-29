@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\HueFestival\\HueFestival\\HueFestival.csproj": {}
+    "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\HueFestival.csproj": {}
   },
   "projects": {
-    "D:\\HueFestival\\HueFestival\\HueFestival.csproj": {
+    "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\HueFestival.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HueFestival\\HueFestival\\HueFestival.csproj",
+        "projectUniqueName": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\HueFestival.csproj",
         "projectName": "HueFestival",
-        "projectPath": "D:\\HueFestival\\HueFestival\\HueFestival.csproj",
+        "projectPath": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\HueFestival.csproj",
         "packagesPath": "C:\\Users\\tombo\\.nuget\\packages\\",
-        "outputPath": "D:\\HueFestival\\HueFestival\\obj\\",
+        "outputPath": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tombo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,7 +40,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.5, )"
             },
