@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HueFestival.DataTransferObject;
+using HueFestival.Models;
+using HueFestival.Repositories;
+using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +13,62 @@ namespace HueFestival.Controllers
     [ApiController]
     public class QuyenHanhController : ControllerBase
     {
-        // GET: api/<QuyenHanhController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IQuyenHanhRepository _quyenHanhRepository;
+        public QuyenHanhController(IQuyenHanhRepository quyenHanhRepository)
         {
-            return new string[] { "value1", "value2" };
+            _quyenHanhRepository =  quyenHanhRepository;
         }
 
-        // GET api/<QuyenHanhController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
-        // POST api/<QuyenHanhController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+            [HttpGet("DS-QuyenhHanh")]
+            public async Task<IActionResult> GetAllAsync()
+            {
+                try
+                {
+                    var DSQuyenHanh = await _quyenHanhRepository.GetAllQuyenHanhWithNameAsync();
+                    return Ok(DSQuyenHanh);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
 
-        // PUT api/<QuyenHanhController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+            // POST api/<QuyenHanhController>
+            [HttpPost("Them_QuyenHanh")]
+            public async Task<IActionResult> ThemQuyenHanh(QuyenHanhDTO QH_Dto)
+            {
+                if (QH_Dto == null)
+                {
+                    return BadRequest();
+                }
 
-        // DELETE api/<QuyenHanhController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+                await _quyenHanhRepository.PostQuyenHanhAsync(QH_Dto);
+
+                return Ok();
+            }
+            
+            // PUT api/<QuyenHanhController>/5  
+            [HttpPut("CapNhat-QuyenHanh/{id}")]
+            public async Task<ActionResult<QuyenHanh>> UpdateNhom(QuyenHanhDTO QH_DTO, int id)
+            {
+                if (QH_DTO == null || QH_DTO.IdChucVu != id)
+                {
+                    return BadRequest();
+                }   
+
+                await _quyenHanhRepository.PutQuyenHanhAsync( QH_DTO, id);
+
+                return NoContent();
+            }
+            
+            // DELETE api/<QuyenHanhController>/5   
+            [HttpDelete("Xoa-QUyenHanh/{id}")]
+            public async Task<IActionResult> DeleteQuyenHanhAsync(int id)
+            {
+                await _quyenHanhRepository.DeleteQuyenHanhAsync(id);
+
+                return NoContent();
+            }
     }
 }

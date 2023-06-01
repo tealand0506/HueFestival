@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HueFestival.Migrations
 {
     [DbContext(typeof(HueFestival_DbContext))]
-    [Migration("20230528194541_InitDatabase")]
-    partial class InitDatabase
+    [Migration("20230601014436_InitDatabaase")]
+    partial class InitDatabaase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

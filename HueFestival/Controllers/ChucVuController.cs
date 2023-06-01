@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HueFestival.DataTransferObject;
+using HueFestival.Models;
+using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +11,61 @@ namespace HueFestival.Controllers
     [ApiController]
     public class ChucVuController : ControllerBase
     {
-        // GET: api/<ChucVuController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IChucVuRepository _chucVuRepository;
+
+        public ChucVuController(IChucVuRepository chucVuRepository)
         {
-            return new string[] { "value1", "value2" };
+            _chucVuRepository = chucVuRepository;
         }
 
-        // GET api/<ChucVuController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+
+        [HttpGet("DanhSach-ChucVu")]
+        public async Task<IActionResult> GetAllAsync()
         {
-            return "value";
+            try
+            {
+                var chucVuList = await _chucVuRepository.GetAllChucVuAsync();
+                return Ok(chucVuList);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("Them-ChucVu")]
+        public async Task<ActionResult<ChucVu>> PostChucVuAsync(string TenChucVu)
+        {
+            var result = await _chucVuRepository.PostChucVuAsync(TenChucVu);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        // POST api/<ChucVuController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPut("CapNhat-ChucVu{id}")]
+        public async Task<IActionResult> PutAsync(int id, ChucVu chucVu)
         {
+            if (chucVu == null || id != chucVu.IdChucVu)
+            {
+                return BadRequest();
+            }
+
+            await _chucVuRepository.PutChucVuAsync(chucVu, id);
+
+            return NoContent();
         }
 
-        // PUT api/<ChucVuController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpDelete("Xoa-ChucVu/{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-        }
+            await _chucVuRepository.DeleteChucVuAsync(id);
 
-        // DELETE api/<ChucVuController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return NoContent();
         }
     }
 }

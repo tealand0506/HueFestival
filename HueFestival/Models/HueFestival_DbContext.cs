@@ -1,4 +1,5 @@
 ﻿//using HueFestival.DataTransferObject;
+using HueFestival.DataTransferObject;
 using Microsoft.EntityFrameworkCore;
 
 namespace HueFestival.Models
@@ -32,10 +33,10 @@ namespace HueFestival.Models
 
         public DbSet<TinTuc> TinTucs { get; set; }
         public DbSet<ThongTin_Ve> ThongTin_Ves { get; set; }
-
-        internal object GetDbContext()
+                        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            throw new NotImplementedException();
+            modelBuilder.Entity<ChucVuDTO>();
         }
     }
 }

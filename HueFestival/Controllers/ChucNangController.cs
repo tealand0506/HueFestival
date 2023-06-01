@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HueFestival.DataTransferObject;
+using HueFestival.Models;
+using HueFestival.Repositories.IRepositories;
+using HueFestival.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +12,57 @@ namespace HueFestival.Controllers
     [ApiController]
     public class ChucNangController : ControllerBase
     {
-        // GET: api/<ChucNangController>
+        private readonly IChucNangRepository _chucNangRepository;
+
+        public ChucNangController(IChucNangRepository chucNangRepository)
+        {
+            _chucNangRepository = chucNangRepository;
+        }   
+        
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<List<ChucNang>>> GetAllChucNangAsync()
         {
-            return new string[] { "value1", "value2" };
+            var chucNangList = await _chucNangRepository.GetAllChucNangAsync();
+            if (chucNangList == null)
+            {
+                return NotFound();
+            }
+            return Ok(chucNangList);
         }
 
-        // GET api/<ChucNangController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost("Them-ChucNang")]
+        public async Task<ActionResult<ChucNang>> PostChucNangAsync(string TenChucNang)
         {
-            return "value";
+            var result = await _chucNangRepository.PostChucNangAsync(TenChucNang);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        // POST api/<ChucNangController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPut("CapNhat-ChucNang/{id}")]
+        public async Task<ActionResult> PutChucNangAsync(int id, [FromBody] ChucNang chucNang)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _chucNangRepository.PutChucNangAsync(chucNang, id);
+            return Ok();
         }
 
-        // PUT api/<ChucNangController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpDelete("Xoa-ChucNang/{id}")]
+        public async Task<ActionResult> DeleteChucNangAsync(int id)
         {
-        }
-
-        // DELETE api/<ChucNangController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            await _chucNangRepository.DeleteChucNangAsync(id);
+            return Ok();
         }
     }
 }
