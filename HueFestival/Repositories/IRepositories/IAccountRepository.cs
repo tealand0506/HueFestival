@@ -1,6 +1,5 @@
 ﻿using HueFestival.DataTransferObject;
 using HueFestival.Models;
-using HueFestival.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace HueFestival.Repositories.IRepositories

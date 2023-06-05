@@ -12,8 +12,7 @@ namespace HueFestival.Models
         public int IdKhachHang { get; set; }
         public int IdNhanVien { get; set; }
         public DateTime NgayCheckIn { get; set; } = DateTime.Now;
-
-        public ChucNang ChucNangs { get; set; }
+        
         public ChucVu ChucVus { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace HueFestival.Models
         [Key]
         public int IdHinhAnh { get; set; }
         public int IdCtr { get; set; }
+        [Required]
         public string Path { get; set; }
 
         public ChuongTrinh ChuongTrinhs { get; set; }

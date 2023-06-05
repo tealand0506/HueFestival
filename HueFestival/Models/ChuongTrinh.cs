@@ -14,13 +14,13 @@ namespace HueFestival.Models
         [Required]
         [MaxLength(100)]
         public string MoTa { get; set; }
-        [Required]
-        public double GiaTien { get; set; }
+        //[Required]
+        //public double GiaTien { get; set; }
         [Required]
         public string PathImage { get; set; }
         [Required]
         public int TypeInOff { get; set; }
-        public int Arrange { get; set; }
+        public int Arrange { get; set; } 
 
         public ICollection<ThongTin_Ve> ThongTin_Ve { get; set; }
 

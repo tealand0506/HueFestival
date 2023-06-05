@@ -1,5 +1,7 @@
 ﻿using HueFestival.DataTransferObject;
 using HueFestival.Models;
+using HueFestival.Repositories;
+using HueFestival.Repositories.IRepositories;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,54 +12,44 @@ namespace HueFestival.Controllers
     [ApiController]
     public class DiaDiemController : ControllerBase
     {
-        private readonly HueFestival_DbContext _context;
+        private readonly IDiaDiemRepository _diaDiemRepository;
 
-        public DiaDiemController(HueFestival_DbContext context)
+
+        public DiaDiemController(IDiaDiemRepository diaDiemRepository)
         {
-            _context = context;
+            _diaDiemRepository = diaDiemRepository;
         }
         // GET: api/<DiaDiemController>
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("DS_DiaDiem")]
+        public async Task<IActionResult> GetAll()
         {
-            var dsDiaDiem = _context.DiaDiems.ToList();
-            return Ok(dsDiaDiem);
-        }
 
-        // GET api/<DiaDiemController>/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<DiaDiem>> GetByID(int id)
-        {
-            var GetbyIdDiaDiem = await _context.DiaDiems.FindAsync(id);
-
-            if (GetbyIdDiaDiem == null)
+            try
             {
-                return NotFound();
+                var dsDiaDiem = await _diaDiemRepository.GetAllDiaDiemAsync();
+                return Ok(dsDiaDiem);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return GetbyIdDiaDiem;
+        }
+        // GET api/<DiaDiemController>/5
+        [HttpGet("Lay_LoaiDD/{id}")]
+        public async Task<object> GetDiaDiemByIdSubMenu(int id)
+        {
+            var diaDiem = await _diaDiemRepository.GetDiaDiemById(id);
+            return diaDiem;
         }
 
         // POST api/<DiaDiemController>
-        [HttpPost]
+       /*[HttpPost]
         public IActionResult AddDiaDiem(DiaDiemDTO model)
         {
-            try
-            {
-                var DiaDiem = new DiaDiemDTO
-                {
-                    TenDiaDiem = model.TenDiaDiem
-                };
-                _context.Add(DiaDiem);
-                _context.SaveChanges();
-                return Ok(DiaDiem);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
 
+        }
+        */
 
     }
 }

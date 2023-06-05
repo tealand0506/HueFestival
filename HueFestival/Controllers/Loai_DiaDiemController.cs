@@ -1,5 +1,7 @@
 ﻿using HueFestival.DataTransferObject;
 using HueFestival.Models;
+using HueFestival.Repositories;
+using HueFestival.Repositories.IRepositories;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,44 +12,54 @@ namespace HueFestival.Controllers
     [ApiController]
     public class Loai_DiaDiemController : ControllerBase
     {
-        private readonly HueFestival_DbContext _context;
+        
+        private readonly ILoai_DiaDiemRepository _LoaiDiaDiemRepository;
 
-        public Loai_DiaDiemController(HueFestival_DbContext context)
+        public Loai_DiaDiemController(ILoai_DiaDiemRepository LDiaDiemRepository)
         {
-            _context = context;
+            _LoaiDiaDiemRepository = LDiaDiemRepository;
         }
         // GET: api/<DiaDiemController>
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("DS_LoaiDiaDiem")]
+        public async Task<IActionResult> GetAll()
         {
-            var dsLoai_DiaDiem = _context.LoaiDiaDiems.ToList();
-            return Ok(dsLoai_DiaDiem);
+            
+            try
+            {
+                var dsLoai_DiaDiem = await _LoaiDiaDiemRepository.GetAllLoai_DiaDiemAsync();
+                return Ok(dsLoai_DiaDiem);
+            }
+            catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         // GET api/<Loai_DiaDiemController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("Lay_LoaiDD/{id}")]
+        public async Task<object> GetDiaDiemByIdSubMenu(int IdLoaiDD)
         {
-            return "value";
+            var diaDiem = await _LoaiDiaDiemRepository.GetByIdLoai_DiaDiemAsync(IdLoaiDD);
+            return diaDiem;
         }
 
+
         // POST api/<Loai_DiaDiemController>
-        [HttpPost]
-        public IActionResult AddLoai_DiaDiem(Loai_DiaDiemDTO model)
+        [HttpPost("Them_LoaiDiaDiem")]
+        public async Task<IActionResult> AddLoai_DiaDiem(Loai_DiaDiem ldd)
         {
             try
             {
-                var Loai_DiaDiem = new Loai_DiaDiemDTO
-                {
-                    TuaDe = model.TuaDe
-                };
-                _context.Add(Loai_DiaDiem);
-                _context.SaveChanges();
-                return Ok(Loai_DiaDiem);
+                var themLoaiDiaDiem = await _LoaiDiaDiemRepository.PostLoai_DiaDiemAsync(ldd);
+                return Ok(themLoaiDiaDiem);
             }
-            catch
+            catch (IOException ex)
             {
-                return BadRequest();
+                   return BadRequest(ex.Message);
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
             }
         }
 

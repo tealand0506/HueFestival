@@ -14,7 +14,6 @@ namespace HueFestival.Models
         public DbSet<ChiTiet_DatVe> ChiTiet_DatVes { get; set; }
         public DbSet<ChuongTrinh> ChuongTrinhs { get; set; }
         public DbSet<ChucVu> ChucVus {get; set;}
-        public DbSet<ChucNang> ChucNangs {get; set;}
 
         public DbSet<DiaDiem> DiaDiems { get; set; }
         public DbSet<DoanNT> DoanNTs { get; set; }
@@ -29,14 +28,9 @@ namespace HueFestival.Models
 
         public DbSet<Nhom_CTr> Nhom_CTrs { get; set; }
 
-        public DbSet<QuyenHanh> QuyenHanhs {get; set;}
-
         public DbSet<TinTuc> TinTucs { get; set; }
         public DbSet<ThongTin_Ve> ThongTin_Ves { get; set; }
                         
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ChucVuDTO>();
-        }
+
     }
 }

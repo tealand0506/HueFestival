@@ -1,7 +1,6 @@
 using HueFestival.Models;
 using HueFestival.Repositories;
 using HueFestival.Repositories.IRepositories;
-using HueFestival.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace HueFestival
@@ -38,21 +37,19 @@ namespace HueFestival
             */
 
             builder.Services.AddScoped<IAccountRepository, AccountRepository>()
-                .AddScoped<IQuyenHanhRepository, QuyenHanhRepository>()
-                .AddScoped<IChucNangRepository, ChucNangRepository>()
-                .AddScoped<IChucVuRepository, ChucVuRepository>();
-            /*
+                .AddScoped<IChucVuRepository, ChucVuRepository>()
+                .AddScoped<IDiaDiemRepository, DiaDiemRepository>()
+                .AddScoped<INhom_CTrRepository, Nhom_CTrRepository>()
+                .AddScoped<IChuongTrinhRepository, ChuongTrinhRepository>()
+                .AddScoped<ILoai_DiaDiemRepository, Loai_DiaDiemRepository>()
+                .AddScoped<IHinhAnhCTRepository, HinhAnhCTRepository>()
+                .AddScoped<IDoanNTRepository, DoanNTRepository>();
+/*
                 .AddScoped<ICheckinRepository, ICheckinRepository>()
                 .AddScoped<IChiTiet_CTrRepository, ChiTiet_CTrRepository>()
                 .AddScoped<IChiTiet_DatVeRepository, ChiTiet_DatVeRepository>()
-                .AddScoped<IChuongTrinhRepository, ChuongTrinhRepository>()
-                .AddScoped<IDiaDiemRepository, DiaDiemRepository>()
-                .AddScoped<IDoanNTRepository, DoanNTRepository>()
-                .AddScoped<IHinhAnh_CTrRepository, HinhAnh_CTrRepository>()
                 .AddScoped<IHoTroRepository, HoTroRepository>()
-                .AddScoped<ILoai_DiaDiemRepository, Loai_DiaDiemRepository>()
-                .AddScoped<ILoai_VeRepository, Loai_VeRepository>()
-                .AddScoped<INhomCTrRepository, NhomCTrRepository>()
+               .AddScoped<ILoai_VeRepository, Loai_VeRepository>()
                 .AddScoped<IThongTin_VeRepository, ThongTin_VeRepository>()
                 .AddScoped<ITinTucRepository, TinTucRepository>();
                 */

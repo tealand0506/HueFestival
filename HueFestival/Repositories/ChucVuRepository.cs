@@ -4,7 +4,7 @@ using HueFestival.Models;
 using HueFestival.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace HueFestival.Repository
+namespace HueFestival.Repositories
 {
     public class ChucVuRepository : Repository<ChucVu>, IChucVuRepository
     {
