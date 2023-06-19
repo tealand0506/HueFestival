@@ -2,10 +2,12 @@
 using HueFestival.Models;
 using HueFestival.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
+using HueFestival.DataTransferObject;
+
 
 namespace HueFestival.Repositories
 {
-    public class HinhAnhCTRepository : Repository<HinhAnh_CTr>
+    public class HinhAnhCTRepository : Repository<HinhAnh_CTr>, IHinhAnhCTRepository
     {
         private readonly HueFestival_DbContext _context;
         private readonly IMapper _mapper;
@@ -18,26 +20,26 @@ namespace HueFestival.Repositories
             _environment = environment;
         }
 
-        public async Task<List<HinhAnh_CTr>> TatCaHinhAnhCuaCT(int id)
+        public async Task<List<HinhAnh_CTr>> TatCaHinhAnh()
         {
             return await TruyXuatTheoLoai(ha => ha.ChuongTrinhs!);
         }
-        public async Task<HinhAnh_CTr?> GetHinhAnhByID( int id)
+        public async Task<List<HinhAnh_CTr?>> GetHinhAnhByCT( int idCT)
         {
-            var ha = await _dbSet.FirstOrDefaultAsync(ha => ha.IdHinhAnh == id);
-            return ha;
+            var dsHinhAnh = await _dbSet.Where(ha => ha.IdCTr == idCT).ToListAsync();
+            return dsHinhAnh;
         }
-        public async Task<List<HinhAnh_CTr>> PostHinhAnhCT(HinhAnh_CTr ha)
+        public async Task<List<HinhAnh_CTr>> PostHinhAnhCT(HinhAnh_CTrDTO HinhAnhDTO)
         {
             List<HinhAnh_CTr> dsHinhAnh = new List<HinhAnh_CTr>();
-            foreach(var file in ha.Path)
+            foreach(var file in HinhAnhDTO.Path!)
             {
                 var imageName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                 InsertFile(file, imageName);
                 var newImageEvent = new HinhAnh_CTr
                 {
-                    Path = "/images/" + imageName,
-                    IdCtr = ha.IdHinhAnh
+                    Path = "/HinhAnhChuongTrinh/" + imageName,
+                    IdCTr = HinhAnhDTO.IdCTr
                 };
                 await PostAsync(newImageEvent);
                 dsHinhAnh.Add(newImageEvent);

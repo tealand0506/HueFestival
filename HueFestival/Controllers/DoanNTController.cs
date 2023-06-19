@@ -1,4 +1,5 @@
-﻿using HueFestival.Models;
+﻿using HueFestival.DataTransferObject;
+using HueFestival.Models;
 using HueFestival.Repositories;
 using HueFestival.Repositories.IRepositories;
 using Microsoft.AspNetCore.Mvc;
@@ -19,13 +20,13 @@ namespace HueFestival.Controllers
 
 
         // GET: api/<DoanNTController>
-        [HttpGet("DS_DoanNT")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("DanhSachDoanNgheThuat")]
+        public async Task<IActionResult> DanhSachDoanNgheThuat()
         {
 
             try
             {
-                var dsDoanNT = await _doanNTRepository.GetAllDoanNT();
+                var dsDoanNT = await _doanNTRepository.GetAllDoanNTAsync();
                 return Ok(dsDoanNT);
             }
             catch (IOException ex)
@@ -39,20 +40,20 @@ namespace HueFestival.Controllers
         }
 
         // GET api/<DoanNTController>/5
-        [HttpGet("LayDoanNT/{id}")]
-        public async Task<object> GetDiaDiemByIdSubMenu(int id)
+        [HttpGet("DoanNgheThuatTheoID/{id}")]
+        public async Task<object> DoanNgheThuatTheoID(int id)
         {
-            var diaDiems = await _doanNTRepository.GetByIdDoanNT(id);
+            var diaDiems = await _doanNTRepository.GetByIdDoanNTAsync(id);
             return diaDiems;
         }
 
         // POST api/<DoanNTController>
-        [HttpPost("Them_LoaiDiaDiem")]
-        public async Task<IActionResult> AddLoai_DiaDiem(string TenDoan)
+        [HttpPost("ThemDoanNgheThuat")]
+        public async Task<IActionResult> ThemDoanNgheThuat(DoanNTDTO doanNTMoi)
         {
             try
             {
-                var ThemDoanNT = await _doanNTRepository.PostDoanNT(TenDoan);
+                var ThemDoanNT = await _doanNTRepository.PostDoanNTAsync(doanNTMoi);
                 return Ok(ThemDoanNT);
             }
             catch (IOException ex)
@@ -66,15 +67,31 @@ namespace HueFestival.Controllers
         }
 
         // PUT api/<DoanNTController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("CapNhatDoanNT/{id}")]
+        public async Task<IActionResult> CapNhatDoanNT(int id, [FromBody] DoanNTDTO doanNTMoi)
         {
+            var doanNTCanSua = await _doanNTRepository.GetByIdDoanNTAsync(id);
+            if(doanNTCanSua == null)
+            {
+                return Ok("ĐOÀN NGHỆ THUẬT CÓ ID = " + id + " KHÔNG TỒN TẠI!");
+            }
+
+            await _doanNTRepository.PutDoanNTAsync(doanNTCanSua, doanNTMoi);
+            return Ok("CẬP NHẬT THÀNH CÔNG ĐOÀN NGHỆ THUẬT CÓ ID = " +doanNTMoi.TenDoan);
         }
 
         // DELETE api/<DoanNTController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("XoaDoanNT/{id}")]
+        public async Task<IActionResult> XoaDoanNT(int id)
         {
+            var doanNTCanXoa = await _doanNTRepository.GetByIdDoanNTAsync(id);
+            if (doanNTCanXoa == null)
+            {
+                return Ok("ĐOÀN NGHỆ THUẬT CÓ ID = " + id + " KHÔNG TỒN TẠI!");
+            }
+
+            await _doanNTRepository.DeleteAsync(doanNTCanXoa);
+            return Ok("NGÀY XƯA BÀ TẬP GÌ MÀ BẢ KHỎE THẾ Ạ");
         }
     }
 }

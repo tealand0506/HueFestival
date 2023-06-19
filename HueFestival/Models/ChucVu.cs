@@ -11,6 +11,6 @@ namespace HueFestival.Models
         [Required, MaxLength(20)]
         public string TenChucVu { get; set; }
 
-        public ICollection<Account> Accounts { get; set; }
+        //public ICollection<Account> Accounts { get; set; }
     }
 }

@@ -19,6 +19,6 @@ namespace HueFestival.Models
         //[StringLength(10, MinimumLength = 10)]
         public string SDT { get; set; }
 
-        public ICollection<ChiTiet_DatVe> ChiTiet_DatVes { get; set; }
+       // public ICollection<ChiTiet_DatVe> ChiTiet_DatVes { get; set; }
     }
 }

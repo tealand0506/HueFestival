@@ -6,22 +6,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HueFestival.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDatabaase : Migration
+    public partial class initDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ChucNang",
+                name: "Check_in",
                 columns: table => new
                 {
-                    IdchucNang = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenChucNang = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    IdDatVe = table.Column<int>(type: "int", nullable: false),
+                    IdNhanVien = table.Column<int>(type: "int", nullable: false),
+                    NgayCheckIn = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChucNang", x => x.IdchucNang);
+                    table.PrimaryKey("PK_Check_in", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,8 +47,6 @@ namespace HueFestival.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenCtr = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MoTa = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    GiaTien = table.Column<double>(type: "float", nullable: false),
-                    PathImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TypeInOff = table.Column<int>(type: "int", nullable: false),
                     Arrange = table.Column<int>(type: "int", nullable: false)
                 },
@@ -116,20 +116,13 @@ namespace HueFestival.Migrations
                 name: "Loai_Ve",
                 columns: table => new
                 {
-                    IdLoai_ve = table.Column<int>(type: "int", nullable: false)
+                    IdLoai_Ve = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LoaiVe = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Loai_VeIdLoai_ve = table.Column<int>(type: "int", nullable: true)
+                    LoaiVe = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Loai_Ve", x => x.IdLoai_ve);
-                    table.ForeignKey(
-                        name: "FK_Loai_Ve_Loai_Ve_Loai_VeIdLoai_ve",
-                        column: x => x.Loai_VeIdLoai_ve,
-                        principalTable: "Loai_Ve",
-                        principalColumn: "IdLoai_ve");
+                    table.PrimaryKey("PK_Loai_Ve", x => x.IdLoai_Ve);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,72 +167,14 @@ namespace HueFestival.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     SDT = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdChucVu = table.Column<int>(type: "int", nullable: false),
-                    ChucVusIdChucVu = table.Column<int>(type: "int", nullable: false)
+                    IdChucVu = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Account", x => x.IdAcc);
                     table.ForeignKey(
-                        name: "FK_Account_ChucVu_ChucVusIdChucVu",
-                        column: x => x.ChucVusIdChucVu,
-                        principalTable: "ChucVu",
-                        principalColumn: "IdChucVu",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Check_in",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdKhachHang = table.Column<int>(type: "int", nullable: false),
-                    IdNhanVien = table.Column<int>(type: "int", nullable: false),
-                    NgayCheckIn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ChucNangsIdchucNang = table.Column<int>(type: "int", nullable: false),
-                    ChucVusIdChucVu = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Check_in", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Check_in_ChucNang_ChucNangsIdchucNang",
-                        column: x => x.ChucNangsIdchucNang,
-                        principalTable: "ChucNang",
-                        principalColumn: "IdchucNang",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Check_in_ChucVu_ChucVusIdChucVu",
-                        column: x => x.ChucVusIdChucVu,
-                        principalTable: "ChucVu",
-                        principalColumn: "IdChucVu",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "QuyenHanh",
-                columns: table => new
-                {
-                    IdQuyenHanh = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdChucVu = table.Column<int>(type: "int", nullable: false),
-                    IdChucNang = table.Column<int>(type: "int", nullable: false),
-                    ChucVusIdChucVu = table.Column<int>(type: "int", nullable: false),
-                    ChucNangsIdchucNang = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_QuyenHanh", x => x.IdQuyenHanh);
-                    table.ForeignKey(
-                        name: "FK_QuyenHanh_ChucNang_ChucNangsIdchucNang",
-                        column: x => x.ChucNangsIdchucNang,
-                        principalTable: "ChucNang",
-                        principalColumn: "IdchucNang",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_QuyenHanh_ChucVu_ChucVusIdChucVu",
-                        column: x => x.ChucVusIdChucVu,
+                        name: "FK_Account_ChucVu_IdChucVu",
+                        column: x => x.IdChucVu,
                         principalTable: "ChucVu",
                         principalColumn: "IdChucVu",
                         onDelete: ReferentialAction.Cascade);
@@ -251,16 +186,15 @@ namespace HueFestival.Migrations
                 {
                     IdHinhAnh = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdCtr = table.Column<int>(type: "int", nullable: false),
-                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ChuongTrinhsIdCTr = table.Column<int>(type: "int", nullable: false)
+                    IdCTr = table.Column<int>(type: "int", nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_HinhAnh_CTr", x => x.IdHinhAnh);
                     table.ForeignKey(
-                        name: "FK_HinhAnh_CTr_ChuongTrinh_ChuongTrinhsIdCTr",
-                        column: x => x.ChuongTrinhsIdCTr,
+                        name: "FK_HinhAnh_CTr_ChuongTrinh_IdCTr",
+                        column: x => x.IdCTr,
                         principalTable: "ChuongTrinh",
                         principalColumn: "IdCTr",
                         onDelete: ReferentialAction.Cascade);
@@ -274,19 +208,18 @@ namespace HueFestival.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenDiaDiem = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdLoaiDD = table.Column<int>(type: "int", nullable: false),
-                    MoTa = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IdLoai_DD = table.Column<int>(type: "int", nullable: false),
+                    MoTa = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     PathImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ToaDoX = table.Column<double>(type: "float", nullable: true),
-                    ToaDoY = table.Column<double>(type: "float", nullable: true),
-                    LoaiDiaDiemsIdLoai_DD = table.Column<int>(type: "int", nullable: false)
+                    ToaDoY = table.Column<double>(type: "float", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DiaDiem", x => x.IdDiaDiem);
                     table.ForeignKey(
-                        name: "FK_DiaDiem_Loai_DiaDiem_LoaiDiaDiemsIdLoai_DD",
-                        column: x => x.LoaiDiaDiemsIdLoai_DD,
+                        name: "FK_DiaDiem_Loai_DiaDiem_IdLoai_DD",
+                        column: x => x.IdLoai_DD,
                         principalTable: "Loai_DiaDiem",
                         principalColumn: "IdLoai_DD",
                         onDelete: ReferentialAction.Cascade);
@@ -299,29 +232,27 @@ namespace HueFestival.Migrations
                     IdVe = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaVe = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdLoai_ve = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    IdChuongTrinh = table.Column<int>(type: "int", nullable: false),
                     SLg = table.Column<int>(type: "int", nullable: false),
                     GiaVe = table.Column<int>(type: "int", nullable: false),
                     NgayPhatHanh = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Loai_VesIdLoai_ve = table.Column<int>(type: "int", nullable: false),
-                    ChuongTrinhsIdCTr = table.Column<int>(type: "int", nullable: false)
+                    IdLoai_Ve = table.Column<int>(type: "int", nullable: false),
+                    IdCTr = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ThongTin_Ve", x => x.IdVe);
                     table.ForeignKey(
-                        name: "FK_ThongTin_Ve_ChuongTrinh_ChuongTrinhsIdCTr",
-                        column: x => x.ChuongTrinhsIdCTr,
+                        name: "FK_ThongTin_Ve_ChuongTrinh_IdCTr",
+                        column: x => x.IdCTr,
                         principalTable: "ChuongTrinh",
                         principalColumn: "IdCTr",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ThongTin_Ve_Loai_Ve_Loai_VesIdLoai_ve",
-                        column: x => x.Loai_VesIdLoai_ve,
+                        name: "FK_ThongTin_Ve_Loai_Ve_IdLoai_Ve",
+                        column: x => x.IdLoai_Ve,
                         principalTable: "Loai_Ve",
-                        principalColumn: "IdLoai_ve",
+                        principalColumn: "IdLoai_Ve",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -331,45 +262,38 @@ namespace HueFestival.Migrations
                 {
                     IdChiTiet_Ctr = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdCtr = table.Column<int>(type: "int", nullable: false),
+                    IdCTr = table.Column<int>(type: "int", nullable: false),
                     Time = table.Column<TimeSpan>(type: "time", nullable: false),
                     fDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     tDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdDiaDiem = table.Column<int>(type: "int", nullable: false),
-                    TenDiaDiem = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdDoan = table.Column<int>(type: "int", nullable: false),
-                    TenDoan = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdNhomCTr = table.Column<int>(type: "int", nullable: false),
-                    TenNhom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ChuongTrinhsIdCTr = table.Column<int>(type: "int", nullable: false),
-                    DiaDiemsIdDiaDiem = table.Column<int>(type: "int", nullable: false),
-                    Nhom_CTrsIdNhomCTr = table.Column<int>(type: "int", nullable: false),
-                    DoanNTsIdDoan = table.Column<int>(type: "int", nullable: false)
+                    IdNhomCTr = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ChiTiet_CTr", x => x.IdChiTiet_Ctr);
                     table.ForeignKey(
-                        name: "FK_ChiTiet_CTr_ChuongTrinh_ChuongTrinhsIdCTr",
-                        column: x => x.ChuongTrinhsIdCTr,
+                        name: "FK_ChiTiet_CTr_ChuongTrinh_IdCTr",
+                        column: x => x.IdCTr,
                         principalTable: "ChuongTrinh",
                         principalColumn: "IdCTr",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ChiTiet_CTr_DiaDiem_DiaDiemsIdDiaDiem",
-                        column: x => x.DiaDiemsIdDiaDiem,
+                        name: "FK_ChiTiet_CTr_DiaDiem_IdDiaDiem",
+                        column: x => x.IdDiaDiem,
                         principalTable: "DiaDiem",
                         principalColumn: "IdDiaDiem",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ChiTiet_CTr_DoanNT_DoanNTsIdDoan",
-                        column: x => x.DoanNTsIdDoan,
+                        name: "FK_ChiTiet_CTr_DoanNT_IdDoan",
+                        column: x => x.IdDoan,
                         principalTable: "DoanNT",
                         principalColumn: "IdDoan",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ChiTiet_CTr_Nhom_CTr_Nhom_CTrsIdNhomCTr",
-                        column: x => x.Nhom_CTrsIdNhomCTr,
+                        name: "FK_ChiTiet_CTr_Nhom_CTr_IdNhomCTr",
+                        column: x => x.IdNhomCTr,
                         principalTable: "Nhom_CTr",
                         principalColumn: "IdNhomCTr",
                         onDelete: ReferentialAction.Cascade);
@@ -384,106 +308,79 @@ namespace HueFestival.Migrations
                     IdVe = table.Column<int>(type: "int", nullable: false),
                     IdKhachHang = table.Column<int>(type: "int", nullable: false),
                     NgayDat = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SLgVe = table.Column<int>(type: "int", nullable: false),
-                    ThongTin_VesIdVe = table.Column<int>(type: "int", nullable: false),
-                    KhachHangsIdKhachHang = table.Column<int>(type: "int", nullable: false)
+                    SLgVe = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ChiTiet_DatVe", x => x.IdDatVe);
                     table.ForeignKey(
-                        name: "FK_ChiTiet_DatVe_KhachHang_KhachHangsIdKhachHang",
-                        column: x => x.KhachHangsIdKhachHang,
+                        name: "FK_ChiTiet_DatVe_KhachHang_IdKhachHang",
+                        column: x => x.IdKhachHang,
                         principalTable: "KhachHang",
                         principalColumn: "IdKhachHang",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ChiTiet_DatVe_ThongTin_Ve_ThongTin_VesIdVe",
-                        column: x => x.ThongTin_VesIdVe,
+                        name: "FK_ChiTiet_DatVe_ThongTin_Ve_IdVe",
+                        column: x => x.IdVe,
                         principalTable: "ThongTin_Ve",
                         principalColumn: "IdVe",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Account_ChucVusIdChucVu",
+                name: "IX_Account_IdChucVu",
                 table: "Account",
-                column: "ChucVusIdChucVu");
+                column: "IdChucVu");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Check_in_ChucNangsIdchucNang",
-                table: "Check_in",
-                column: "ChucNangsIdchucNang");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Check_in_ChucVusIdChucVu",
-                table: "Check_in",
-                column: "ChucVusIdChucVu");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ChiTiet_CTr_ChuongTrinhsIdCTr",
+                name: "IX_ChiTiet_CTr_IdCTr",
                 table: "ChiTiet_CTr",
-                column: "ChuongTrinhsIdCTr");
+                column: "IdCTr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChiTiet_CTr_DiaDiemsIdDiaDiem",
+                name: "IX_ChiTiet_CTr_IdDiaDiem",
                 table: "ChiTiet_CTr",
-                column: "DiaDiemsIdDiaDiem");
+                column: "IdDiaDiem");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChiTiet_CTr_DoanNTsIdDoan",
+                name: "IX_ChiTiet_CTr_IdDoan",
                 table: "ChiTiet_CTr",
-                column: "DoanNTsIdDoan");
+                column: "IdDoan");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChiTiet_CTr_Nhom_CTrsIdNhomCTr",
+                name: "IX_ChiTiet_CTr_IdNhomCTr",
                 table: "ChiTiet_CTr",
-                column: "Nhom_CTrsIdNhomCTr");
+                column: "IdNhomCTr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChiTiet_DatVe_KhachHangsIdKhachHang",
+                name: "IX_ChiTiet_DatVe_IdKhachHang",
                 table: "ChiTiet_DatVe",
-                column: "KhachHangsIdKhachHang");
+                column: "IdKhachHang");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChiTiet_DatVe_ThongTin_VesIdVe",
+                name: "IX_ChiTiet_DatVe_IdVe",
                 table: "ChiTiet_DatVe",
-                column: "ThongTin_VesIdVe");
+                column: "IdVe");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DiaDiem_LoaiDiaDiemsIdLoai_DD",
+                name: "IX_DiaDiem_IdLoai_DD",
                 table: "DiaDiem",
-                column: "LoaiDiaDiemsIdLoai_DD");
+                column: "IdLoai_DD");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HinhAnh_CTr_ChuongTrinhsIdCTr",
+                name: "IX_HinhAnh_CTr_IdCTr",
                 table: "HinhAnh_CTr",
-                column: "ChuongTrinhsIdCTr");
+                column: "IdCTr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Loai_Ve_Loai_VeIdLoai_ve",
-                table: "Loai_Ve",
-                column: "Loai_VeIdLoai_ve");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_QuyenHanh_ChucNangsIdchucNang",
-                table: "QuyenHanh",
-                column: "ChucNangsIdchucNang");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_QuyenHanh_ChucVusIdChucVu",
-                table: "QuyenHanh",
-                column: "ChucVusIdChucVu");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ThongTin_Ve_ChuongTrinhsIdCTr",
+                name: "IX_ThongTin_Ve_IdCTr",
                 table: "ThongTin_Ve",
-                column: "ChuongTrinhsIdCTr");
+                column: "IdCTr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ThongTin_Ve_Loai_VesIdLoai_ve",
+                name: "IX_ThongTin_Ve_IdLoai_Ve",
                 table: "ThongTin_Ve",
-                column: "Loai_VesIdLoai_ve");
+                column: "IdLoai_Ve");
         }
 
         /// <inheritdoc />
@@ -508,10 +405,10 @@ namespace HueFestival.Migrations
                 name: "HoTro");
 
             migrationBuilder.DropTable(
-                name: "QuyenHanh");
+                name: "TinTuc");
 
             migrationBuilder.DropTable(
-                name: "TinTuc");
+                name: "ChucVu");
 
             migrationBuilder.DropTable(
                 name: "DiaDiem");
@@ -527,12 +424,6 @@ namespace HueFestival.Migrations
 
             migrationBuilder.DropTable(
                 name: "ThongTin_Ve");
-
-            migrationBuilder.DropTable(
-                name: "ChucNang");
-
-            migrationBuilder.DropTable(
-                name: "ChucVu");
 
             migrationBuilder.DropTable(
                 name: "Loai_DiaDiem");

@@ -19,6 +19,7 @@ namespace HueFestival.Models
         public string SDT { get; set; }
 
         public int IdChucVu { get; set; }
+        [ForeignKey("IdChucVu")]
         public ChucVu ChucVus { get; set; }
     }
 }

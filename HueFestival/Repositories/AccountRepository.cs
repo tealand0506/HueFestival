@@ -2,6 +2,7 @@
 using HueFestival.Models;
 using HueFestival.Repositories;
 using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Runtime.CompilerServices;
@@ -13,11 +14,20 @@ namespace HueFestival.Repositories
         private readonly HueFestival_DbContext _context;
         public AccountRepository(HueFestival_DbContext context) : base(context)
         {
-            
+            _context = context;
         }
-        public async Task<List<Account>> GetAllAsync()
+        public async Task<List<Account>> GetAllTaiKhoan()
         {
-            return await GetAllAsync();
+            return await _context.Accounts.Include(e => e.ChucVus).ToListAsync();
+        }
+        public async Task<Account> DangNhap(string Emaill, string Pass)
+        {
+            var TaiKhoan = _context.Accounts.FirstOrDefault(a => a.Email.ToLower() == Emaill.ToLower());
+            if (TaiKhoan != null && Pass == TaiKhoan.Password)
+            {
+                return TaiKhoan;
+            }
+            return null;
         }
         public async Task<Account?> GetAccountLoginAsync(AccountDTO Account)
         {
@@ -29,7 +39,7 @@ namespace HueFestival.Repositories
         {
             List<Account> accounts = await GetAllAsync();
             return accounts.FirstOrDefault(x => x.IdAcc == id);
-        }
+        }   
         public async Task DeleteAccountAsync(Account account)
         {
             await DeleteAsync(account);
@@ -37,7 +47,7 @@ namespace HueFestival.Repositories
 
         public async Task<Account> AddAccountAsync(AccountDTO accountDTO)
         {
-            Account newAccount = new Account
+            var newAccount = new Account    
             {
                 TenDN = accountDTO.TenDN,
                 HoTen = accountDTO.HoTen,
@@ -47,30 +57,28 @@ namespace HueFestival.Repositories
                 IdChucVu = accountDTO.IdChucVu
             };
 
-            _context.Accounts.Add(newAccount);
-            await _context.SaveChangesAsync();
+            
+            await PostAsync(newAccount);
 
             return newAccount;
         }
-
-        public async Task<bool> CheckUsernameAsync(string username)
+        public async Task DoiMatKhau(Account acc, string MatKhau)
         {
-            
+            acc.Password = MatKhau;
+
+            await PutAsync(acc);
+        }
+        public async Task<Account?> CheckUsernameAsync(string username)
+        {
+
             Account account = await _context.Accounts.FirstOrDefaultAsync(a => a.TenDN == username);
 
-            
-            if (account != null)
-            {
-                return true;
-            }
-
-            
-            return false;
+            return account;
         }
-        public async Task UpdateChucVuAsync(Account account, int IdChucVu)
+        public async Task UpdateChucVuAsync(Account account)
         {
             
-            ChucVu chucVu = await _context.ChucVus.FirstOrDefaultAsync(cv => cv.IdChucVu == IdChucVu);
+            var chucVu = await _context.ChucVus.FirstOrDefaultAsync(cv => cv.IdChucVu == account.IdChucVu);
 
             
             if (chucVu != null)
@@ -83,6 +91,5 @@ namespace HueFestival.Repositories
                 throw new Exception("Chức vụ không tồn tại");
             }
         }
-
     }
 }

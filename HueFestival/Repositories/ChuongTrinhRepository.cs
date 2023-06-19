@@ -1,23 +1,27 @@
-﻿using AutoMapper;
+﻿#nullable enable
+using AutoMapper;
 using HueFestival.DataTransferObject;
 using HueFestival.Models;
 using HueFestival.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace HueFestival.Repositories
 {
-   public class ChuongTrinhRepository : Repository<ChuongTrinh>
+   public class ChuongTrinhRepository : Repository<ChuongTrinh>, IChuongTrinhRepository
     { 
         private readonly HueFestival_DbContext _context;
+        private readonly IWebHostEnvironment _environment;
         private readonly IMapper _mapper;
     
-
-        public ChuongTrinhRepository(HueFestival_DbContext context, IMapper mapper) : base(context)
+        public ChuongTrinhRepository(HueFestival_DbContext context, IMapper mapper, IWebHostEnvironment environment) : base(context)
         {
             _context = context;
             _mapper = mapper;
+            _environment = environment;
         }
-        public async Task<List<ChuongTrinh>> GetAllChuongTrinh()
+        public async Task<List<ChuongTrinh?>> GetAllChuongTrinh()
         {
             var ct = await _context.ChuongTrinhs
                 .Include(c => c.ChiTiet_CTrs)
@@ -35,55 +39,66 @@ namespace HueFestival.Repositories
                .Include(c => c.ChiTiet_CTrs)
                    .ThenInclude(c => c.Nhom_CTrs)
                .Include(c => c.HinhAnh_CTrs).FirstOrDefaultAsync(c => c.IdCTr == Id);
+      
             return ct;
         }
-        public async Task<ChuongTrinh> PostChuongTrinh(ChuongTrinhDTO ctDTO, List<IFormFile> imageFiles)
+        public async Task<ChuongTrinh?> PostChuongTrinh(ChuongTrinhDTO ctDTO, List<IFormFile> HinhAnh)
         {
-            var ct = _mapper.Map<ChuongTrinh>(ctDTO);
+
+            var ct = new ChuongTrinh
+            {
+                TenCtr = ctDTO.TenCtr,
+                MoTa = ctDTO.MoTa,
+                TypeInOff = ctDTO.TypeInOff,
+                Arrange = ctDTO.Arrange
+            };
 
             try
             {
                 _context.ChuongTrinhs.Add(ct);
                 await _context.SaveChangesAsync();
 
-                var chuongTrinhImages = new List<HinhAnh_CTr>();
+                var dsHinhAnh = new List<HinhAnh_CTr>();
 
-                foreach (var imageFile in imageFiles)
+                foreach (var imageFile in HinhAnh)
                 {
-
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-                    var filePath = Path.Combine("Uploads\\ChuongTrinhImage", fileName);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    if (imageFile != null && imageFile.Length > 0)
                     {
-                        await imageFile.CopyToAsync(stream);
+                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                        var filePath = Path.Combine("wwwroot\\HinhAnhChuongTrinh", fileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(stream);
+                        }
+
+                        var ThemHinhAnh = new HinhAnh_CTr
+                        {
+                            Path = filePath,
+                            IdCTr = ct.IdCTr
+                        };
+
+                        dsHinhAnh.Add(ThemHinhAnh);
                     }
-
-                    var hinhAnh_CTr = new HinhAnh_CTr
-                    {
-                        Path = fileName,
-                        IdCtr = ct.IdCTr
-                    };
-
-                    chuongTrinhImages.Add(hinhAnh_CTr);
-
                 }
 
-                ct.HinhAnh_CTrs = chuongTrinhImages;
+                ct.HinhAnh_CTrs = dsHinhAnh;
 
                 await _context.SaveChangesAsync();
 
-                var ctct = new ChiTiet_CTr
+                var ChiTietCT = new ChiTiet_CTr
                 {
                     Time = TimeSpan.Parse(ctDTO.Time),
                     fDate = DateTime.Parse(ctDTO.fDate),
                     tDate = DateTime.Parse(ctDTO.tDate),
                     IdDiaDiem = ctDTO.IdDiaDiem,
-                    IdNhomCTr = ctDTO.IdNhomCTr,
-                    IdCtr = ct.IdCTr,
+                    IdNhomCTr = ctDTO.IdNhomCT,
+                    IdDoan = ctDTO.IdDoan,
+                    IdCTr = ct.IdCTr
                 };
-                _context.ChiTiet_CTrs.Add(ctct);
+                _context.ChiTiet_CTrs.Add(ChiTietCT);
                 await _context.SaveChangesAsync();
+              
             }
             catch (DbUpdateException ex)
             {
@@ -107,5 +122,6 @@ namespace HueFestival.Repositories
 
         }
         */
+        
     }
 }

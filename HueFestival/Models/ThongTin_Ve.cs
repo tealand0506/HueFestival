@@ -10,23 +10,24 @@ namespace HueFestival.Models
         [Key]
         public int IdVe { get; set; }
         [Required]
-        public string MaVe { get; set; }
-        [Required]
-        public int IdLoai_ve { get; set; }
-        [Required]
         public bool Status { get; set; }
-        [Required]
-        public int IdChuongTrinh { get; set; }
         [Required]
         public int SLg { get; set; }
         [Required]
         public int GiaVe { get; set; }
         [Required]
-        public DateTime NgayPhatHanh { get; set; }
+        public DateTime NgayPhatHanh { get; set; } = DateTime.Now;
 
+        [Required]
+        public int IdLoai_Ve { get; set; }
+        [ForeignKey("IdLoai_Ve")]
         public Loai_Ve Loai_Ves { get; set; }
-       
-         public ChuongTrinh ChuongTrinhs { get; set; }    
+
+        [Required]
+        public int IdCTr { get; set; }
+        [ForeignKey("IdCTr")]
+        public ChuongTrinh ChuongTrinhs { get; set; }    
         
+        public ChiTiet_DatVe ChiTiet_DatVes { get; set; }
     }
 }

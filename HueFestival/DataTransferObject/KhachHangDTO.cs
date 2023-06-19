@@ -13,5 +13,6 @@ namespace HueFestival.DataTransferObject
         [Required]
         //[StringLength(10, MinimumLength = 10)]
         public string SDT { get; set; }
+        //public string Email { get; set; }
     }
 }

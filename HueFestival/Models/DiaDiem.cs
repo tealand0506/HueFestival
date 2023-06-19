@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema; 
 
 namespace HueFestival.Models
 {
@@ -12,9 +12,14 @@ namespace HueFestival.Models
         [MaxLength(50)]
         public string TenDiaDiem { get; set; }
         public string? DiaChi { get; set; }
+
+        //Thuộc tính tham chiếu đến bảng LoaiDiaDiem
         [Required]
-        public int IdLoaiDD { get; set; }
-        [Required, MaxLength(100)]
+        public int IdLoai_DD { get; set; }
+        [ForeignKey("IdLoai_DD")]
+        public Loai_DiaDiem Loai_DiaDiems { get; set; }
+
+        [Required, MaxLength(500)]
         public string MoTa { get; set; }
         [Required]
         public string PathImage { get; set; }
@@ -23,9 +28,7 @@ namespace HueFestival.Models
 
         public double? ToaDoY { get; set; }
 
-        public ICollection<ChiTiet_CTr> ChiTiet_CTrs { get; set; }
+        //public ICollection<ChiTiet_CTr> ChiTiet_CTrs { get; set; }
 
-        //Thuộc tính tham chiếu đến bảng LoaiDiaDiem
-        public Loai_DiaDiem LoaiDiaDiems { get; set; }
     }
 }

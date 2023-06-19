@@ -1,4 +1,5 @@
-﻿using HueFestival.Models;
+﻿using HueFestival.DataTransferObject;
+using HueFestival.Models;
 using HueFestival.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,19 +21,19 @@ namespace HueFestival.Repositories
             var Nhom = await _dbSet.FirstOrDefaultAsync(x => x.IdNhomCTr == Id);
             return Nhom;
         }
-        public async Task<Nhom_CTr> PostNhom_CTrRepository(string TenNhom)
+        public async Task<Nhom_CTr> PostNhom_CTrRepository(Nhom_CTrDTO Nhom)
         {
             var ThemNhomCTr = new Nhom_CTr
             {
-                TenNhom_CTr = TenNhom
+                TenNhom_CTr = Nhom.TenNhom_CTr
             };
             await PostAsync(ThemNhomCTr);
             return ThemNhomCTr;
         }
-        public async Task PutNhom_CTrRepository(Nhom_CTr nhomCanDoi, Nhom_CTr nhomMoi)
+        public async Task PutNhom_CTrRepository(Nhom_CTr nhomCanDoi, Nhom_CTrDTO nhomMoi)
         {
             nhomCanDoi.TenNhom_CTr = nhomMoi.TenNhom_CTr;
-            await PutAsync(nhomMoi);
+            await PutAsync(nhomCanDoi);
         }
         public async Task DeleteNhom_CTrRepository(Nhom_CTr nhom)
         {

@@ -17,40 +17,35 @@ namespace HueFestival.Repositories
 
         public async Task<List<ChucVu>> GetAllChucVuAsync()
         {
-            return await _context.Set<ChucVu>().ToListAsync();
+            return await GetAllAsync();
         }
 
+        public async Task<ChucVu?> GetByIdChecVuAsynnc(int id)
+        {
+            var chucVu = await _dbSet.FirstOrDefaultAsync(cv => cv.IdChucVu == id);
+            return chucVu;
+        }
 
-
-        public async Task<ChucVu> PostChucVuAsync(string TenChucVu)
+        public async Task<ChucVu> PostChucVuAsync(ChucVuDTO ChucVuMoi)
         {
             var ThemChucVu = new ChucVu
             {
-                TenChucVu = TenChucVu
+                TenChucVu = ChucVuMoi.TenChucVu
             };
             await PostAsync(ThemChucVu);
             return ThemChucVu;
         }
 
-        public async Task PutChucVuAsync(ChucVu chucVu, int id)
+        public async Task PutChucVuAsync(ChucVu chucVuCanSua, ChucVuDTO ChucVuMoi)
         {
-            var CapNhatChucVu = await _context.Set<ChucVu>().FindAsync(id);
-            if (CapNhatChucVu != null)  
-            {
-                CapNhatChucVu.TenChucVu = chucVu.TenChucVu;
-                _context.Set<ChucVu>().Update(CapNhatChucVu);
-                await _context.SaveChangesAsync();
-            }
+            chucVuCanSua.TenChucVu = ChucVuMoi.TenChucVu;
+
+            await PutAsync(chucVuCanSua);
         }
 
-        public async Task DeleteChucVuAsync(int id)
+        public async Task DeleteChucVuAsync(ChucVu chucVu)
         {
-            var chucVu = await _context.Set<ChucVu>().FindAsync(id);
-            if (chucVu != null)
-            {
-                _context.Set<ChucVu>().Remove(chucVu);
-                await _context.SaveChangesAsync();
-            }
+            await DeleteAsync(chucVu);            
         }
     }
 }

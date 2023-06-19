@@ -10,7 +10,7 @@ namespace HueFestival.Models
         public int IdHoTro { get; set; }
         [Required]
         public string HoTroName { get; set; }
-
+        [Required, MaxLength(5000)]
         public string NoiDung { get; set; }
     }
 }

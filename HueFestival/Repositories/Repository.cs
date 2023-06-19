@@ -19,6 +19,7 @@ namespace HueFestival.Repositories.IRepositories
         public async Task<List<TEntity>> GetAllAsync()//truy xuat
         {
             return await _dbSet.ToListAsync();
+
         }
 
 

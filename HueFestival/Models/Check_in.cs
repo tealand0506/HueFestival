@@ -9,10 +9,13 @@ namespace HueFestival.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public int IdKhachHang { get; set; }
+        public int IdDatVe { get; set; }
+        [ForeignKey("IdDatVe")]
+        public ChiTiet_DatVe ChiTiet_DatVes { get; set; }
+        [Required]
         public int IdNhanVien { get; set; }
-        public DateTime NgayCheckIn { get; set; } = DateTime.Now;
         
-        public ChucVu ChucVus { get; set; }
+        public DateTime NgayCheckIn { get; set; } = DateTime.Now;
+
     }
 }

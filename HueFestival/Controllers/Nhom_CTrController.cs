@@ -1,4 +1,5 @@
-﻿using HueFestival.Models;
+﻿using HueFestival.DataTransferObject;
+using HueFestival.Models;
 using HueFestival.Repositories;
 using HueFestival.Repositories.IRepositories;
 using Microsoft.AspNetCore.Mvc;
@@ -18,8 +19,8 @@ namespace HueFestival.Controllers
             _nhomCTRepsitory = nhomCTRepsitory;
         }
         // GET: api/<Nhom_CTrController>
-        [HttpGet("DS_NhomCTr")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("DanhSachNhomCTr")]
+        public async Task<IActionResult> DanhSachNhomChuongTrinh()
         {
 
             try
@@ -35,8 +36,8 @@ namespace HueFestival.Controllers
         }
 
         // GET api/<Nhom_CTrController>/5
-        [HttpGet("NhomCT/{id}")]
-        public async Task<object> GetDiaDiemByIdSubMenu(int id)
+        [HttpGet("XuatNhomCT_ThemID/{id}")]
+        public async Task<object?> XuatNhomCT_ThemID(int id)
         {
             var nhomCT = await _nhomCTRepsitory.GetByIdNhom_CTrRepository(id);
             return nhomCT;
@@ -44,12 +45,12 @@ namespace HueFestival.Controllers
 
 
         // POST api/<Nhom_CTrController>
-        [HttpPost("Them_NhomCT")]
-        public async Task<IActionResult> AddLoai_DiaDiem(string tenNhom)
+        [HttpPost("ThemNhomCT")]
+        public async Task<IActionResult> ThemNhomCTr(Nhom_CTrDTO nhom)
         {
             try
             {
-                var themNhomCT = await _nhomCTRepsitory.PostNhom_CTrRepository(tenNhom);
+                var themNhomCT = await _nhomCTRepsitory.PostNhom_CTrRepository(nhom);
                 return Ok(themNhomCT);
             }
             catch (IOException ex)
@@ -63,15 +64,42 @@ namespace HueFestival.Controllers
         }
 
         // PUT api/<Nhom_CTrController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("SuaNhomChuongTrinh/{id}")]
+        public async Task<IActionResult> SuaNhomChuongTrinh(int id, [FromForm] Nhom_CTrDTO NhomMoi)
         {
+            //kiểm tra tồn tại của 
+            var NhomCanSua = await _nhomCTRepsitory.GetByIdNhom_CTrRepository(id);
+            if (NhomCanSua == null)
+            {
+                return Ok(new
+                {
+                    Message = "NHÓM CHƯƠNG TRÌNH CÓ ID = "+id+" KHÔNG TỒN TẠI!"
+                });
+            }
+
+            await _nhomCTRepsitory.PutNhom_CTrRepository(NhomCanSua, NhomMoi);
+            return Ok(new
+            {
+                Message = "CẬP NHẬT NHÓM CHƯƠN TRÌNH THÀNH CÔNG!"
+            });
         }
 
         // DELETE api/<Nhom_CTrController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("XoaNhomChuongTrinh/{id}")]
+        public async Task<IActionResult> XoaNhomChuongTrinh(int id)
         {
+            //kiểm tra tồn tại của 
+            var NhomCanXoa = await _nhomCTRepsitory.GetByIdNhom_CTrRepository(id);
+            if (NhomCanXoa == null)
+            {
+                return Ok(new
+                {
+                    Message = "ID NÀY KHÔNG TỒN TẠI!"
+                });
+            }
+
+            await _nhomCTRepsitory.DeleteNhom_CTrRepository(NhomCanXoa);
+            return Ok(new { Message = "XÓA NHÓM CHUONG TRÌNH HÀNH CÔNG!" });
         }
     }
 }

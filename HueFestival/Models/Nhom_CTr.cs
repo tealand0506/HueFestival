@@ -11,7 +11,7 @@ namespace HueFestival.Models
         public int IdNhomCTr { get; set; }
         public string TenNhom_CTr { get; set; }
 
-        public ICollection<ChiTiet_CTr> ChiTiet_CTrs { get; set; }
+        //public ICollection<ChiTiet_CTr> ChiTiet_CTrs { get; set; }
     }
 
 }

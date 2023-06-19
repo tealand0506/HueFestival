@@ -9,14 +9,11 @@ namespace HueFestival.DataTransferObject
         public string TenDiaDiem { get; set; }
         public string? DiaChi { get; set; }
         [Required]
-        public int IdLoaiDD { get; set; }
+        public int IdLoai_DD { get; set; }
         [Required, MaxLength(100)]
         public string MoTa { get; set; }
         [Required]
-        public string PathImage { get; set; }
-        
-        public double? ToaDoX { get; set; }
-        
-        public double? ToaDoY { get; set; }
+        public IFormFile PathImage { get; set; }
+ 
     }
 }

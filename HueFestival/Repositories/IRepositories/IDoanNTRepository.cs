@@ -1,13 +1,14 @@
-﻿using HueFestival.Models;
+﻿using HueFestival.DataTransferObject;
+using HueFestival.Models;
 
 namespace HueFestival.Repositories.IRepositories
 {
     public interface IDoanNTRepository : IRepository<DoanNT>
     {
-        Task<List<DoanNT>> GetAllDoanNT();
-        Task<DoanNT?> GetByIdDoanNT(int Id);
-        Task<DoanNT> PostDoanNT(string TenDoan);
-        Task PutDoanNT(DoanNT doanCanSua, DoanNT doanMoi);
-        Task DeleteDoanNT(DoanNT doan);
+        Task<List<DoanNT>> GetAllDoanNTAsync();
+        Task<DoanNT?> GetByIdDoanNTAsync(int Id);
+        Task<DoanNT> PostDoanNTAsync(DoanNTDTO doanNtCanSua);
+        Task PutDoanNTAsync(DoanNT doanCanSua, DoanNTDTO doanMoi);
+        Task DeleteDoanNTAsync(DoanNT doan);
     }
 }

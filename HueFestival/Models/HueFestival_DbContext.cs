@@ -24,7 +24,7 @@ namespace HueFestival.Models
         public DbSet<KhachHang> KhachHangs {get; set;}
 
         public DbSet<Loai_Ve> Loai_Ves { get; set; }
-        public DbSet<Loai_DiaDiem> LoaiDiaDiems { get; set; }
+        public DbSet<Loai_DiaDiem> Loai_DiaDiems { get; set; }
 
         public DbSet<Nhom_CTr> Nhom_CTrs { get; set; }
 

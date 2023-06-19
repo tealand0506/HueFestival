@@ -20,7 +20,7 @@ namespace HueFestival.Controllers
 
 
         [HttpGet("DanhSach-ChucVu")]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> DanhSachChucVu()
         {
             try
             {
@@ -33,9 +33,9 @@ namespace HueFestival.Controllers
             }
         }
         [HttpPost("Them-ChucVu")]
-        public async Task<ActionResult<ChucVu>> PostChucVuAsync(string TenChucVu)
+        public async Task<ActionResult<ChucVu>> ThemChucVu(ChucVuDTO chucVuMoi)
         {
-            var result = await _chucVuRepository.PostChucVuAsync(TenChucVu);
+            var result = await _chucVuRepository.PostChucVuAsync(chucVuMoi);
 
             if (result != null)
             {
@@ -48,24 +48,29 @@ namespace HueFestival.Controllers
         }
 
         [HttpPut("CapNhat-ChucVu{id}")]
-        public async Task<IActionResult> PutAsync(int id, ChucVu chucVu)
+        public async Task<IActionResult> SuaChucVu(int id, ChucVuDTO chucVu)
         {
-            if (chucVu == null || id != chucVu.IdChucVu)
+            var cvCanSua = await _chucVuRepository.GetByIdChecVuAsynnc(id);
+            if(cvCanSua == null)
             {
-                return BadRequest();
+                return Ok("KHÔNG TÌM THẤY CHỨC VỤ CÓ ID = " + id);
             }
+            await _chucVuRepository.PutChucVuAsync(cvCanSua, chucVu);
 
-            await _chucVuRepository.PutChucVuAsync(chucVu, id);
-
-            return NoContent();
+            return Ok("CẬP NHẬT THÀNH CÔNG CHỨC VỤ " + chucVu.TenChucVu);
         }
 
         [HttpDelete("Xoa-ChucVu/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            await _chucVuRepository.DeleteChucVuAsync(id);
+            var cvCanXoa = await _chucVuRepository.GetByIdChecVuAsynnc(id);
+            if (cvCanXoa == null)
+            {
+                return Ok("KHÔNG TÌM THẤY CHỨC VỤ CÓ ID = " + id);
+            }
+            await _chucVuRepository.DeleteChucVuAsync(cvCanXoa);
 
-            return NoContent();
+            return Ok("XÓA THÀNH CÔNG CHỨC VỤ ID = " + id);
         }
     }
 }

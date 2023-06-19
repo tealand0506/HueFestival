@@ -9,7 +9,7 @@ namespace HueFestival.Models
         [Key]
         public int IdChiTiet_Ctr { get; set; }
         [Required]
-        public int IdCtr { get; set; }
+        public int IdCTr { get; set; }
         [Required]
         public TimeSpan Time { get; set; }
         [Required]
@@ -19,24 +19,24 @@ namespace HueFestival.Models
         [Required]
         public int IdDiaDiem { get; set; }
         [Required]
-        public string TenDiaDiem { get; set; }
-        [Required]
         public int? IdDoan { get; set; }
-        public string? TenDoan { get; set; }
-        public int IdNhomCTr { get; set; }
         [Required]
-        public string TenNhom { get; set; }
+        public int IdNhomCTr { get; set; }
 
         //Thuộc tính tham chiếu đến bảng ChuongTrinh
+        [ForeignKey("IdCTr")]
         public ChuongTrinh ChuongTrinhs { get; set; }
 
         // Thuộc tính tham chiếu đến bảng DiaDiem
+        [ForeignKey("IdDiaDiem")]
         public DiaDiem DiaDiems { get; set; }
 
         // Thuộc tính tham chiếu đến bảng Nhom
+        [ForeignKey("IdNhomCTr")]
         public Nhom_CTr Nhom_CTrs { get; set; }
 
         // Thuộc tính tham chiếu đến bảng Doan
+        [ForeignKey("IdDoan")]
         public DoanNT DoanNTs { get; set; }
 
     }

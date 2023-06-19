@@ -8,5 +8,7 @@ namespace HueFestival.DataTransferObject
         public int IdVe { get; set; }
         [Required]
         public int IdKhachHang { get; set; }
+        [Required]
+        public int Slg { get; set; }
     }
 }

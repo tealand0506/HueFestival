@@ -12,6 +12,6 @@ namespace HueFestival.Models
         [Required, MaxLength(50)]
         public string TenDoan { get; set; }
         
-        public ICollection<ChiTiet_CTr> ChiTiet_Ctrs { get; set; }
+        //public ICollection<ChiTiet_CTr> ChiTiet_Ctrs { get; set; }
     }
 }

@@ -7,11 +7,10 @@ namespace HueFestival.Models
     public class Loai_Ve
     {
         [Key]
-        public int IdLoai_ve { get; set; }
+        public int IdLoai_Ve { get; set; }
         [Required]
         public string LoaiVe { get; set; }
-        public string? MoTa { get; set; }
 
-        public ICollection<Loai_Ve> Loai_Ves { get; set; }
+        //public ICollection<ThongTin_Ve> ThongTin_Ves { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace HueFestival.DataTransferObject
         [Required, MaxLength(50)]
         public string TuaDe { get; set; }
         [Required]
-        public string PathImage { get; set; }
+        public IFormFile PathImage { get; set; }
     }
 }

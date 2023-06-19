@@ -6,7 +6,7 @@ namespace HueFestival.DataTransferObject
     {
         [Required]
         public string HoTroName { get; set; }
-
+        
         public string NoiDung { get; set; }
     }
 }

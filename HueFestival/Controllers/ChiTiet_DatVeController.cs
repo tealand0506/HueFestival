@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HueFestival.DataTransferObject;
+using HueFestival.Models;
+using HueFestival.Repositories;
+using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -6,38 +10,25 @@ namespace HueFestival.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CHiTiet_DatVeController : ControllerBase
+    public class ChiTiet_DatVeController : ControllerBase
     {
-        // GET: api/<CHiTiet_DatVeController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IChiTiet_DatVeRepository _CTDVrepository;
+        private readonly HueFestival_DbContext _context;
+        public ChiTiet_DatVeController( HueFestival_DbContext context, IChiTiet_DatVeRepository CTDVrepository)
         {
-            return new string[] { "value1", "value2" };
+            _context = context;
+            _CTDVrepository = CTDVrepository;
         }
 
-        // GET api/<CHiTiet_DatVeController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+
+        [HttpPost("DatVe")]
+        public async Task<object> DatVe ([FromForm]ChiTiet_DatVeDTO ctdvDTO)
         {
-            return "value";
+            var ChiTietDatVe = await _CTDVrepository.DatVe(ctdvDTO);
+            var ThongTinKhachHang = _context.KhachHangs.FirstOrDefault(kh => kh.IdKhachHang == ctdvDTO.IdKhachHang);
+            var ThongTinVe = _context.ThongTin_Ves.FirstOrDefault(ve => ve.IdVe == ctdvDTO.IdVe);
+            return Ok(new { ChiTietDatVe, ThongTinKhachHang, ThongTinVe});
         }
 
-        // POST api/<CHiTiet_DatVeController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<CHiTiet_DatVeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<CHiTiet_DatVeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

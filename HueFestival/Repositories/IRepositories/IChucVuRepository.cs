@@ -8,9 +8,10 @@ namespace HueFestival.Repositories.IRepositories
     {
         // Phương thức quản lý chức vụ
         Task<List<ChucVu>> GetAllChucVuAsync();// lấy danh sách tất cả chức vụ
-        Task<ChucVu>  PostChucVuAsync(string TenChucVu);// thêm chức vụ
-        Task PutChucVuAsync(ChucVu chucVu, int id);//sửa chức vụ
-        Task DeleteChucVuAsync(int id);// xóa chức vụ
+        Task<ChucVu?> GetByIdChecVuAsynnc(int id);
+        Task<ChucVu> PostChucVuAsync(ChucVuDTO chucVu);// thêm chức vụ
+        Task PutChucVuAsync(ChucVu chucVuCanSua, ChucVuDTO ChucVuMoi);//sửa chức vụ
+        Task DeleteChucVuAsync(ChucVu chucVu);// xóa chức vụ
 
     }
 }

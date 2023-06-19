@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HueFestival.Models;
+using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +10,19 @@ namespace HueFestival.Controllers
     [ApiController]
     public class HinhAnh_CTrController : ControllerBase
     {
+        private readonly HueFestival_DbContext _context;
+        private readonly IHinhAnhCTRepository _hinhAnhRepository;
+        public HinhAnh_CTrController(HueFestival_DbContext context, IHinhAnhCTRepository hinhAnhCTRepository)
+        {
+            _context = context;
+            _hinhAnhRepository = hinhAnhCTRepository;
+        }
         // GET: api/<HinhAnh_CTrController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> DanhSachHinhAnhCuaCT (int idCT)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<HinhAnh_CTrController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<HinhAnh_CTrController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<HinhAnh_CTrController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<HinhAnh_CTrController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var HinhAnh_CTr = await _hinhAnhRepository.GetHinhAnhByCT(idCT);
+            return HinhAnh_CTr == null ? NotFound() : Ok(HinhAnh_CTr);
         }
     }
 }

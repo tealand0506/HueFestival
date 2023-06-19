@@ -2,5 +2,17 @@
 {
     public class ChiTiet_CTrDTO
     {
+
+        public string Time { get; set; }
+
+        public string fDate { get; set; }
+
+        public string tDate { get; set; }
+
+        public int IdDiaDiem { get; set; }
+
+        public int? IdDoan { get; set; }
+
+        public int IdNhomCTr { get; set; }
     }
 }

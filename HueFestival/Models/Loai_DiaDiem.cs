@@ -13,7 +13,7 @@ namespace HueFestival.Models
         [Required]
         public string PathImage { get; set; }
 
-        public ICollection<DiaDiem> DiaDiems { get; set; }
+       // public ICollection<DiaDiem> DiaDiems { get; set; }
 
     }
 }
