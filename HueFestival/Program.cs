@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace HueFestival
 {
@@ -16,12 +17,9 @@ namespace HueFestival
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddSwaggerGen(option =>
@@ -51,6 +49,7 @@ namespace HueFestival
                     }
                 });
             });
+            
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -76,18 +75,20 @@ namespace HueFestival
 
             builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
-            /*
+            
             builder.Services.AddAuthorization(options =>
             {
-                options.AddPolicy("AdminOrStaffOrManager", policy => policy.RequireRole(RoleAssignment.ADMIN, RoleAssignment.MANAGER, RoleAssignment.STAFF));
-                options.AddPolicy("AdminOrManager", policy => policy.RequireRole(RoleAssignment.ADMIN, RoleAssignment.MANAGER));
-                options.AddPolicy("ManagerOrStaff", policy => policy.RequireRole(RoleAssignment.STAFF, RoleAssignment.MANAGER));
-                options.AddPolicy("AdminPolicy", policy => policy.RequireRole(RoleAssignment.ADMIN));
-                options.AddPolicy("ManagerPolicy", policy => policy.RequireRole(RoleAssignment.MANAGER));
-                options.AddPolicy("StaffPolicy", policy => policy.RequireRole(RoleAssignment.STAFF));
-                options.AddPolicy("ReporterPolicy", policy => policy.RequireRole(RoleAssignment.REPORTER));
+                options.AddPolicy("Admin_QuanLy_NhanVien", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("Admin_QuanLy", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+                // options.AddPolicy("AdminOrManager", policy => policy.RequireRole(RoleAssignment.ADMIN, RoleAssignment.MANAGER));
+                // options.AddPolicy("ManagerOrStaff", policy => policy.RequireRole(RoleAssignment.STAFF, RoleAssignment.MANAGER));
+                // options.AddPolicy("AdminPolicy", policy => policy.RequireRole(RoleAssignment.ADMIN));
+                // options.AddPolicy("ManagerPolicy", policy => policy.RequireRole(RoleAssignment.MANAGER));
+                // options.AddPolicy("StaffPolicy", policy => policy.RequireRole(RoleAssignment.STAFF));
+                // options.AddPolicy("ReporterPolicy", policy => policy.RequireRole(RoleAssignment.REPORTER));
             });
-            */
+            
 
             builder.Services.AddScoped<IAccountRepository, AccountRepository>()
                 .AddScoped<IChucVuRepository, ChucVuRepository>()
@@ -96,6 +97,7 @@ namespace HueFestival
                 .AddScoped<INhom_CTrRepository, Nhom_CTrRepository>()
                 .AddScoped<ILoai_DiaDiemRepository, Loai_DiaDiemRepository>()
                 .AddScoped<IHinhAnhCTRepository, HinhAnhCTRepository>()
+                .AddScoped<INguoiDungRepository, NguoiDungRepository>()
                 .AddScoped<IVeRepository, VeRepository>()
                 .AddScoped<IKhachHangRepository, KhachHangRepository>()
                 .AddScoped<IChiTiet_DatVeRepository, ChiTiet_DatVeRepository>()
@@ -110,7 +112,7 @@ namespace HueFestival
                 */
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -122,7 +124,6 @@ namespace HueFestival
             app.UseAuthorization();
 
             app.UseAuthorization();
-
 
             app.UseDeveloperExceptionPage();
 

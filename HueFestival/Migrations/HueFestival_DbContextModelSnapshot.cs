@@ -30,25 +30,10 @@ namespace HueFestival.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAcc"));
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HoTen")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdChucVu")
-                        .HasColumnType("int");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("SDT")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenDN")
                         .IsRequired()
@@ -56,8 +41,6 @@ namespace HueFestival.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("IdAcc");
-
-                    b.HasIndex("IdChucVu");
 
                     b.ToTable("Account");
                 });
@@ -308,6 +291,7 @@ namespace HueFestival.Migrations
 
                     b.Property<string>("NoiDung")
                         .IsRequired()
+                        .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdHoTro");
@@ -380,6 +364,42 @@ namespace HueFestival.Migrations
                     b.HasKey("IdLoai_Ve");
 
                     b.ToTable("Loai_Ve");
+                });
+
+            modelBuilder.Entity("HueFestival.Models.NguoiDung", b =>
+                {
+                    b.Property<int>("IdNguoiDung")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdNguoiDung"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HoTen")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("IdAccount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdChucVu")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SDT")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdNguoiDung");
+
+                    b.HasIndex("IdAccount");
+
+                    b.HasIndex("IdChucVu");
+
+                    b.ToTable("NguoiDung");
                 });
 
             modelBuilder.Entity("HueFestival.Models.Nhom_CTr", b =>
@@ -473,15 +493,30 @@ namespace HueFestival.Migrations
                     b.ToTable("TinTuc");
                 });
 
-            modelBuilder.Entity("HueFestival.Models.Account", b =>
+            modelBuilder.Entity("HueFestival.Models.Token", b =>
                 {
-                    b.HasOne("HueFestival.Models.ChucVu", "ChucVus")
-                        .WithMany()
-                        .HasForeignKey("IdChucVu")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("IdToke")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("ChucVus");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdToke"));
+
+                    b.Property<int>("IdAccount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdJwt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdToke");
+
+                    b.HasIndex("IdAccount");
+
+                    b.ToTable("Token");
                 });
 
             modelBuilder.Entity("HueFestival.Models.Check_in", b =>
@@ -571,6 +606,25 @@ namespace HueFestival.Migrations
                     b.Navigation("ChuongTrinhs");
                 });
 
+            modelBuilder.Entity("HueFestival.Models.NguoiDung", b =>
+                {
+                    b.HasOne("HueFestival.Models.Account", "Accounts")
+                        .WithMany()
+                        .HasForeignKey("IdAccount")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HueFestival.Models.ChucVu", "ChucVus")
+                        .WithMany()
+                        .HasForeignKey("IdChucVu")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Accounts");
+
+                    b.Navigation("ChucVus");
+                });
+
             modelBuilder.Entity("HueFestival.Models.ThongTin_Ve", b =>
                 {
                     b.HasOne("HueFestival.Models.ChuongTrinh", "ChuongTrinhs")
@@ -588,6 +642,17 @@ namespace HueFestival.Migrations
                     b.Navigation("ChuongTrinhs");
 
                     b.Navigation("Loai_Ves");
+                });
+
+            modelBuilder.Entity("HueFestival.Models.Token", b =>
+                {
+                    b.HasOne("HueFestival.Models.Account", "Accounts")
+                        .WithMany()
+                        .HasForeignKey("IdAccount")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Accounts");
                 });
 
             modelBuilder.Entity("HueFestival.Models.ChuongTrinh", b =>

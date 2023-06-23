@@ -10,13 +10,14 @@ namespace HueFestival.Repositories.IRepositories
         Task<Account?> GetAccountLoginAsync(AccountDTO Account);
         Task<Account?> GetAccountByIDAsync(int id);
         Task DoiMatKhau(Account acc, string MatKhau);
+        Task<Token> TaoMaToken(Account account, ChucVu cv);
         Task DeleteAccountAsync(Account account);
 
-        Task<Account> AddAccountAsync(AccountDTO accountDTO);
+        Task<Account> PostAccountAsync(string sdt, string email, int IdChucVu);
 
         Task<Account> CheckUsernameAsync(string username);
-        Task<Account> DangNhap(string Emaill, string Pass);
-        Task UpdateChucVuAsync(Account account);
+        Task<Account> DangNhap(AccountDTO dn);
+        //Task UpdateChucVuAsync(Account account);
        
 
     }

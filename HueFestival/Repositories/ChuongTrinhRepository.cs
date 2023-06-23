@@ -113,15 +113,17 @@ namespace HueFestival.Repositories
 
             return ct;
         }
-        /*public async Task PutChuongTrinh(ChuongTrinh CT)
+       public async Task PutChuongTrinh(ChuongTrinh ctCanSua, string TenCtr, string MoTa)
         {
-
+            ctCanSua.TenCtr = TenCtr;
+            ctCanSua.MoTa = MoTa;
+            await PutAsync(ctCanSua);
         }
+        
         public async Task DeleteChuongTrinh(ChuongTrinh CT)
         {
-
+            await DeleteAsync(CT);
         }
-        */
         
     }
 }

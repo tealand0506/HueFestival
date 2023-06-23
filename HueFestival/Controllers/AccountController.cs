@@ -1,6 +1,7 @@
 ﻿using HueFestival.DataTransferObject;
 using HueFestival.Models;
 using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
@@ -14,6 +15,7 @@ namespace HueFestival.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountRepository _accountRepository;
+        
         private readonly HueFestival_DbContext _context;
 
         public AccountController(IAccountRepository accountRepository, HueFestival_DbContext context)
@@ -23,8 +25,9 @@ namespace HueFestival.Controllers
         }
 
 
-        // GET: api/<AccountController>
+        //GET: api/<AccountController>
         [HttpGet("DS_TaiKhoan")]
+        [Authorize(Policy = "Admin_QuanLy")]
         public async Task<IActionResult> DanhSachTaiKhoan()
         {
             var dsTaiKhoan = await _accountRepository.GetAllTaiKhoan();
@@ -32,36 +35,23 @@ namespace HueFestival.Controllers
         }
 
         [HttpPost("DangNhap")]
-        public async Task<ActionResult> DangNhapTaiKhoan([FromForm] string Emaill, [FromForm] string Pass)
+        public async Task<ActionResult> DangNhapTaiKhoan([FromForm] AccountDTO DangNhap)
         {
-            var TaiKhoan = await _accountRepository.DangNhap(Emaill, Pass);
-            if (TaiKhoan != null)
+            var TaiKhoan = await _accountRepository.DangNhap(DangNhap);
+            if (TaiKhoan == null)
             {
-                return Ok(new { message = "ĐĂNG NHẬP THÀNH CÔNG", TaiKhoan }) ;
+                return Ok("ĐĂNG NHẬP KHÔNG THÀNH CÔNG");
             }
-            return Ok("ĐĂNG NHẬP KHÔNG THÀNH CÔNG");
+            var ChucVu = _context.NguoiDungs.Where(nd => nd.IdAccount == TaiKhoan.IdAcc).Select(nd => nd.ChucVus).FirstOrDefault();
+            var MaToken = await _accountRepository.TaoMaToken(TaiKhoan, ChucVu);
+            return Ok(new { message = "ĐĂNG NHẬP THÀNH CÔNG", TaiKhoan, MaToken }) ;
         }
 
-        // POST api/<AccountController>
-        [HttpPost]  
-        public async Task<object> ThemTaiKhoon([FromForm] AccountDTO Acc)
-        {
-            var account = await _context.Accounts.FirstOrDefaultAsync(tk => tk.TenDN == Acc.TenDN);
-            if (account != null)
-            {
-                return Ok("TÊN ĐĂNG NHẬP NÀY ĐÃ TỒN TẠI");
-            }
-            if (_context.ChucVus.FirstOrDefault(cv => cv.IdChucVu != Acc.IdChucVu) == null)
-            {
-                return Ok("CHỨC VỤ NÀY KHÔNG TỒN TẠI");
-            }
-            var TaiKhoan = await _accountRepository.AddAccountAsync(Acc);
-            return Ok(TaiKhoan);
-        }
 
         // PUT api/<AccountController>/5
         [HttpPut("DoiMatKhau")]
-        public async Task<object> SuaMatKhau([FromForm] string TenDN, string mk, string mkMoi)
+        [Authorize(Policy = "Admin_QuanLy_NhanVien")]
+        public async Task<object> DoiMatKhau([FromForm] string TenDN, string mk, string mkMoi)
         {
 
             var acc = await _accountRepository.CheckUsernameAsync(TenDN);
@@ -81,8 +71,17 @@ namespace HueFestival.Controllers
 
         // DELETE api/<AccountController>/5
         [HttpDelete("{id}")]
-        public void XoaTaiKhoan(int id)
+        [Authorize(Policy = "Admin_QuanLy")]
+        public async Task<IActionResult> XoaTaiKhoan(int id)
         {
+            var acc = await _accountRepository.GetAccountByIDAsync(id);
+            if(acc == null)
+            {
+                return NotFound("KHONG TIM THAY ACCOUNT CO ID = "+id);
+            }
+
+            await _accountRepository.DeleteAccountAsync(acc);
+            return Ok("XOA TAI KHOAN THANH CONG!");
         }
     }
 }

@@ -167,8 +167,6 @@ C:\Users\tombo\OneDrive\Máy tính\HueFestival\HueFestival\obj\Debug\net6.0\refi
 C:\Users\tombo\OneDrive\Máy tính\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.pdb
 C:\Users\tombo\OneDrive\Máy tính\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.genruntimeconfig.cache
 C:\Users\tombo\OneDrive\Máy tính\HueFestival\HueFestival\obj\Debug\net6.0\ref\HueFestival.dll
-C:\Users\tombo\OneDrive\Máy tính\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.RazorAssemblyInfo.cache
-C:\Users\tombo\OneDrive\Máy tính\HueFestival\HueFestival\obj\Debug\net6.0\HueFestival.RazorAssemblyInfo.cs
 C:\Users\tombo\OneDrive\Máy tính\HueFestival\HueFestival\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\tombo\OneDrive\Máy tính\HueFestival\HueFestival\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\tombo\OneDrive\Máy tính\HueFestival\HueFestival\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll

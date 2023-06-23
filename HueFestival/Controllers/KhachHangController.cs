@@ -2,6 +2,7 @@
 using HueFestival.Models;
 using HueFestival.Repositories;
 using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +24,8 @@ namespace HueFestival.Controllers
 
         // GET: api/<KhachHangController>
         [HttpGet("DS_KhachHang")]
-         public async Task<IActionResult> DsKhachHang()
+        [Authorize(Policy = "Admin_QuanLy_NhanVien")]
+        public async Task<IActionResult> DsKhachHang()
         {
 
             try
@@ -40,6 +42,7 @@ namespace HueFestival.Controllers
 
         // GET api/<KhachHangController>/5
         [HttpGet("TimKhachHang/{id}")]
+        [Authorize(Policy = "Admin_QuanLy_NhanVien")]
         public async Task<KhachHang?> TimKhachHang_ID(int id)
         {
 
@@ -49,6 +52,7 @@ namespace HueFestival.Controllers
 
         // POST api/<KhachHangController>
         [HttpPost("ThemKhachHang")]
+        [Authorize(Policy = "Admin_QuanLy_NhanVien")]
         public async Task<object> ThemKhachHang([FromForm] KhachHangDTO kh)
         {
             if(kh.SDT.Length != 11 || kh.CCCD.Length !=12)
@@ -77,15 +81,31 @@ namespace HueFestival.Controllers
         }
 
         // PUT api/<KhachHangController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("CaNhatKhachHang{id}")]
+        [Authorize(Policy = "Admin_QuanLy")]
+        public async Task<IActionResult> Put(int id, [FromForm] KhachHangDTO khMoi)
         {
+            var khCanSua = await _khachHangRepository.GetByIdKhachHangAsync(id);
+            if(khCanSua == null)
+            {
+                return NotFound("Không tìm thấy thôn tin khách hàng!");
+            }
+            await _khachHangRepository.PutKhachHangAsync(khCanSua, khMoi);
+            return Ok("Cập nhật thông tin thành công!");
         }
 
         // DELETE api/<KhachHangController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [Authorize(Policy = "Admin_QuanLy")]
+        public async Task<IActionResult> Delete(int id)
         {
+            var khCanXoa = await _khachHangRepository.GetByIdKhachHangAsync(id);
+            if(khCanXoa == null)
+            {
+                return NotFound("Không tìm thấy thôn tin khách hàng!");
+            }
+            await _khachHangRepository.DeleteKhachHangAsync(khCanXoa);
+            return Ok("Xóa khách hàng thành công!");
         }
     }
 }

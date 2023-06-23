@@ -17,6 +17,7 @@ namespace HueFestival.Mapper
             CreateMap<DoanNT, DoanNTDTO>().ReverseMap();
             CreateMap<HinhAnh_CTr, HinhAnh_CTrDTO>().ReverseMap();
             CreateMap<HoTro, HoTroDTO>().ReverseMap();
+            CreateMap<NguoiDung, NguoiDungDTO>().ReverseMap();
             CreateMap<KhachHang, KhachHangDTO>().ReverseMap();
             CreateMap<Loai_DiaDiem, Loai_DiaDiemDTO>().ReverseMap();
             CreateMap<Loai_Ve, Loai_VeDTO>().ReverseMap();

@@ -3,6 +3,7 @@
     public class ChiTiet_CTrDTO
     {
 
+        public int IdCTr { get; set; }
         public string Time { get; set; }
 
         public string fDate { get; set; }

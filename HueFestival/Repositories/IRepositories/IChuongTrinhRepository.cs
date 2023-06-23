@@ -8,7 +8,7 @@ namespace HueFestival.Repositories.IRepositories
         Task<List<ChuongTrinh?>> GetAllChuongTrinh();
         Task<ChuongTrinh?> GetByIdChuongTrinh(int Id);
         Task<ChuongTrinh?> PostChuongTrinh(ChuongTrinhDTO ctDTO, List<IFormFile> dsHinhAnh);
-        //Task PutChuongTrinh(ChuongTrinh CT);
-        //Task DeleteChuongTrinh(ChuongTrinh CT);
+        Task PutChuongTrinh(ChuongTrinh ctCanSua, string TenCtr, string MoTa);
+        Task DeleteChuongTrinh(ChuongTrinh CT);
     }
 }

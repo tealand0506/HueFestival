@@ -4111,11 +4111,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\HueFestival.csproj",
+      "projectUniqueName": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\HueFestival.csproj",
       "projectName": "HueFestival",
-      "projectPath": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\HueFestival.csproj",
+      "projectPath": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\HueFestival.csproj",
       "packagesPath": "C:\\Users\\tombo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\obj\\",
+      "outputPath": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tombo\\AppData\\Roaming\\NuGet\\NuGet.Config",

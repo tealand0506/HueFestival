@@ -1,6 +1,7 @@
 ﻿using HueFestival.DataTransferObject;
 using HueFestival.Models;
 using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.InteropServices;
 
@@ -10,6 +11,7 @@ namespace HueFestival.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "Admin_QuanLy")]
     public class HoTroController : ControllerBase
     {
         private readonly HueFestival_DbContext _context;
@@ -34,7 +36,7 @@ namespace HueFestival.Controllers
             return HoTro;
         }
 
-        [HttpPost("ThemHoTo")]
+        [HttpPost("ThemHoTro")]
         public async Task<IActionResult> ThemHoTro([FromForm] HoTroDTO hoTro)
         {
             var themHoTro = await _hoTroRepository.ThemHoTro(hoTro);

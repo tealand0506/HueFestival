@@ -1,6 +1,7 @@
 ﻿using HueFestival.DataTransferObject;
 using HueFestival.Models;
 using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,6 +10,7 @@ namespace HueFestival.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "Admin_QuanLy")]
     public class ChucVuController : ControllerBase
     {
         private readonly IChucVuRepository _chucVuRepository;

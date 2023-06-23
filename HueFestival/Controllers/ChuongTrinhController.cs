@@ -2,6 +2,7 @@
 using HueFestival.DataTransferObject;
 using HueFestival.Models;
 using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 
@@ -11,6 +12,7 @@ namespace HueFestival.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "Admin_QuanLy")]
     public class ChuongTrinhController : ControllerBase
     {
         private readonly IChuongTrinhRepository _chuongTrinhRepository;
@@ -63,15 +65,27 @@ namespace HueFestival.Controllers
         }
 
         // PUT api/<ChuongTrinhController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("CapNhatChuongTrinh/{id}")]
+        public async Task<IActionResult> Put(int id, [FromForm] string TenCtr, [FromForm] string MoTa)
         {
+            var ctCanSua = await _chuongTrinhRepository.GetByIdChuongTrinh(id);
+            if(ctCanSua == null)
+            {
+                return NotFound($"Không tìm được chương trình với Id={id}");
+            }
+            await _chuongTrinhRepository.PutChuongTrinh(ctCanSua, TenCtr, MoTa);
+            return Ok($"Cập nhật thành công chuong tình có ID={id}");
         }
 
         // DELETE api/<ChuongTrinhController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("XoaChuongTrinh/{id}")]
+        public async void Delete(int id)
         {
+            var ctCanXoa = await _chuongTrinhRepository.GetByIdChuongTrinh(id);
+            if(ctCanXoa != null)
+            {
+                await _chuongTrinhRepository.DeleteChuongTrinh(ctCanXoa);
+            }
         }
     }
 }   

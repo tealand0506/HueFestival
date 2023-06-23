@@ -2,6 +2,7 @@
 using HueFestival.Models;
 using HueFestival.Repositories;
 using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,7 @@ namespace HueFestival.Controllers
 
         // GET: api/<ThongTin_VeController>
         [HttpGet("DS_Ve")]
+        [Authorize(Policy = "Admin_QuanLy_NhanVien")]
         public async Task<IActionResult> DanhSachVe()
         {
             try
@@ -41,6 +43,7 @@ namespace HueFestival.Controllers
 
         // GET api/<ThongTin_VeController>/5
         [HttpGet("PhatHanhVe/{id}")]
+        [Authorize(Policy = "Admin_QuanLy_NhanVien")]
         public async Task<object> TimVeTheoId(int id)
         {
 
@@ -50,6 +53,7 @@ namespace HueFestival.Controllers
 
         // POST api/<ThongTin_VeController>
         [HttpPost]
+        [Authorize(Policy = "Admin_QuanLy")]
         public async Task<object> PhatHanhVe([FromForm] ThongTin_VeDTO Ve)
         {
 
@@ -73,15 +77,31 @@ namespace HueFestival.Controllers
 
 
         // PUT api/<ThongTin_VeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("CapNhatVe{id}")]
+        [Authorize(Policy = "Admin_QuanLy")]
+        public async Task<IActionResult> Put(int id, [FromForm] ThongTin_VeDTO veMoi)
         {
+            var veCanSua = await _veRepository.GetByIdThongTinVe(id);
+            if(veCanSua == null)
+            {
+                return NotFound("Không tìm thấy vé có ID="+id);
+            }
+            await _veRepository.PutThongTinVe(veCanSua,veMoi);
+            return Ok("Cập nhật thông tin vé thành công");
         }
 
         // DELETE api/<ThongTin_VeController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [Authorize(Policy = "Admin_QuanLy")]
+        public async Task<IActionResult> Delete(int id)
         {
+            var veCanXoa = await _veRepository.GetByIdThongTinVe(id);
+            if(veCanXoa == null)
+            {
+                return NotFound("Không tìm thấy vé có ID="+id);
+            }
+            await _veRepository.DeleteThongTinVe(veCanXoa);
+            return Ok("Xóa thông tin vé thành công");
         }
     }
 }

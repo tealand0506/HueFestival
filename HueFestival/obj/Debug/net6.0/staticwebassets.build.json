@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+JhpYecMwOblZMKFpJTaOQTAQJi1uZgZmRshWqE43+w=",
+  "Hash": "ZKi+XZvaLKnQp0Qayb9vviBONTB50ec0jK1e89sKdH0=",
   "Source": "HueFestival",
   "BasePath": "_content/HueFestival",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "HueFestival\\wwwroot",
       "Source": "HueFestival",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\080a48dc-06e9-4e61-a4b0-40ba7f00e32a.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\080a48dc-06e9-4e61-a4b0-40ba7f00e32a.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/080a48dc-06e9-4e61-a4b0-40ba7f00e32a.png",
       "AssetKind": "All",
@@ -34,10 +34,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\080a48dc-06e9-4e61-a4b0-40ba7f00e32a.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\0934a98d-62dd-4488-8cd8-ac5dce5b4e6e.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\0934a98d-62dd-4488-8cd8-ac5dce5b4e6e.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/0934a98d-62dd-4488-8cd8-ac5dce5b4e6e.png",
       "AssetKind": "All",
@@ -51,10 +51,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\0934a98d-62dd-4488-8cd8-ac5dce5b4e6e.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\1d1e3544-4a89-408e-9aaf-26f3ee278199.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\1d1e3544-4a89-408e-9aaf-26f3ee278199.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/1d1e3544-4a89-408e-9aaf-26f3ee278199.png",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\1d1e3544-4a89-408e-9aaf-26f3ee278199.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\382684f7-be3c-4c89-8532-73de24667567.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\382684f7-be3c-4c89-8532-73de24667567.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/382684f7-be3c-4c89-8532-73de24667567.png",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\382684f7-be3c-4c89-8532-73de24667567.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\3ab844bf-f8af-43c5-bc8e-ad4c9e437187.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\3ab844bf-f8af-43c5-bc8e-ad4c9e437187.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/3ab844bf-f8af-43c5-bc8e-ad4c9e437187.png",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\3ab844bf-f8af-43c5-bc8e-ad4c9e437187.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\44063ab6-ad64-4c9e-ab9a-3b975534bcc3.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\44063ab6-ad64-4c9e-ab9a-3b975534bcc3.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/44063ab6-ad64-4c9e-ab9a-3b975534bcc3.png",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\44063ab6-ad64-4c9e-ab9a-3b975534bcc3.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\5d9720b0-9231-4957-89d5-9c91a66703a7.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\5d9720b0-9231-4957-89d5-9c91a66703a7.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/5d9720b0-9231-4957-89d5-9c91a66703a7.png",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\5d9720b0-9231-4957-89d5-9c91a66703a7.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\6f147030-e192-4acd-9bcb-164e6e70a700.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\6f147030-e192-4acd-9bcb-164e6e70a700.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/6f147030-e192-4acd-9bcb-164e6e70a700.png",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\6f147030-e192-4acd-9bcb-164e6e70a700.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\7d3369a1-4b40-4f27-a66e-899840cde6ec.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\7d3369a1-4b40-4f27-a66e-899840cde6ec.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/7d3369a1-4b40-4f27-a66e-899840cde6ec.png",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\7d3369a1-4b40-4f27-a66e-899840cde6ec.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\82decd62-69c3-4ebf-8797-6f9536526f2b.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\82decd62-69c3-4ebf-8797-6f9536526f2b.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/82decd62-69c3-4ebf-8797-6f9536526f2b.png",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\82decd62-69c3-4ebf-8797-6f9536526f2b.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\8a951f84-b9a9-4f58-84cf-aa5b577e221b.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\8a951f84-b9a9-4f58-84cf-aa5b577e221b.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/8a951f84-b9a9-4f58-84cf-aa5b577e221b.png",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\8a951f84-b9a9-4f58-84cf-aa5b577e221b.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\99617eb6-7af7-40b5-ba5a-ef3bc0a35958.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\99617eb6-7af7-40b5-ba5a-ef3bc0a35958.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/99617eb6-7af7-40b5-ba5a-ef3bc0a35958.png",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\99617eb6-7af7-40b5-ba5a-ef3bc0a35958.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\a091f84d-d7ba-4c71-9a7b-10ea1072f63d.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\a091f84d-d7ba-4c71-9a7b-10ea1072f63d.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/a091f84d-d7ba-4c71-9a7b-10ea1072f63d.png",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\a091f84d-d7ba-4c71-9a7b-10ea1072f63d.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\a8fc3030-d099-4c80-b8a2-228f50778c32.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\a8fc3030-d099-4c80-b8a2-228f50778c32.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/a8fc3030-d099-4c80-b8a2-228f50778c32.png",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\a8fc3030-d099-4c80-b8a2-228f50778c32.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\b31e7f6e-2900-447d-a234-ca90cd660d54.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\b31e7f6e-2900-447d-a234-ca90cd660d54.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/b31e7f6e-2900-447d-a234-ca90cd660d54.png",
       "AssetKind": "All",
@@ -272,10 +272,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\b31e7f6e-2900-447d-a234-ca90cd660d54.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\c17e7df0-4172-4c4f-b2ab-1ffc6d3b50a4.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\c17e7df0-4172-4c4f-b2ab-1ffc6d3b50a4.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/c17e7df0-4172-4c4f-b2ab-1ffc6d3b50a4.png",
       "AssetKind": "All",
@@ -289,10 +289,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\c17e7df0-4172-4c4f-b2ab-1ffc6d3b50a4.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhChuongTrinh\\f7d0810a-a4d2-4d49-b5fc-270165eb78d1.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhChuongTrinh\\f7d0810a-a4d2-4d49-b5fc-270165eb78d1.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhChuongTrinh/f7d0810a-a4d2-4d49-b5fc-270165eb78d1.png",
       "AssetKind": "All",
@@ -306,10 +306,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhChuongTrinh\\f7d0810a-a4d2-4d49-b5fc-270165eb78d1.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhDiaDiem\\7692d5ba-64d6-4220-b7fa-c6c72de988af.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhDiaDiem\\7692d5ba-64d6-4220-b7fa-c6c72de988af.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhDiaDiem/7692d5ba-64d6-4220-b7fa-c6c72de988af.png",
       "AssetKind": "All",
@@ -323,10 +323,10 @@
       "OriginalItemSpec": "wwwroot\\HinhAnhDiaDiem\\7692d5ba-64d6-4220-b7fa-c6c72de988af.png"
     },
     {
-      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\HinhAnhDiaDiem\\924c1024-3884-47a9-84ce-7da579070370.png",
+      "Identity": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\HinhAnhDiaDiem\\924c1024-3884-47a9-84ce-7da579070370.png",
       "SourceId": "HueFestival",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\HueFestival\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tombo\\OneDrive\\Máy tính\\HueFestival\\huefestival\\wwwroot\\",
       "BasePath": "_content/HueFestival",
       "RelativePath": "HinhAnhDiaDiem/924c1024-3884-47a9-84ce-7da579070370.png",
       "AssetKind": "All",

@@ -2,6 +2,7 @@
 using HueFestival.Models;
 using HueFestival.Repositories;
 using HueFestival.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,7 @@ namespace HueFestival.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "Admin_QuanLy")]
     public class DiaDiemController : ControllerBase
     {
         private readonly IDiaDiemRepository _diaDiemRepository;

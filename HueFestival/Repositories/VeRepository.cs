@@ -35,13 +35,18 @@ namespace HueFestival.Repositories
             await PostAsync(PhatHanhVe);
             return PhatHanhVe;
         }
-        public async Task PutThongTinVe(ThongTin_VeDTO VeCanSua, ThongTin_VeDTO VeMoi)
+        public async Task PutThongTinVe(ThongTin_Ve VeCanSua, ThongTin_VeDTO VeMoi)
         {
-
+                VeCanSua.IdCTr = VeMoi.IdCTr;
+                VeCanSua.IdLoai_Ve = VeMoi.IdLoai_ve;
+                VeCanSua.GiaVe = VeMoi.GiaVe;
+                VeCanSua.SLg = VeMoi.SLg;
+                VeCanSua.SLg = VeMoi.SLg;
+                await PutAsync(VeCanSua);
         }
-        public async Task DeleteThongTinVe(ThongTin_VeDTO VeCanXoa)
+        public async Task DeleteThongTinVe(ThongTin_Ve VeCanXoa)
         {
-
+            await DeleteAsync(VeCanXoa);
         }
     }
 }

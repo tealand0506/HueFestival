@@ -20,6 +20,7 @@ namespace HueFestival.Models
 
         public DbSet<HinhAnh_CTr> HinhAnh_CTrs { get; set; }
         public DbSet<HoTro> HoTros { get; set; }
+        public DbSet<NguoiDung> NguoiDungs { get; set;}
 
         public DbSet<KhachHang> KhachHangs {get; set;}
 
@@ -29,6 +30,7 @@ namespace HueFestival.Models
         public DbSet<Nhom_CTr> Nhom_CTrs { get; set; }
 
         public DbSet<TinTuc> TinTucs { get; set; }
+        public DbSet<Token> Tokens{get; set;}
         public DbSet<ThongTin_Ve> ThongTin_Ves { get; set; }
                         
 
